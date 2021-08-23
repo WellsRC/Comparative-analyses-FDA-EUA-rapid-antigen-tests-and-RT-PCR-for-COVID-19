@@ -1,0 +1,25 @@
+testName,Quarantine_Duration_Exit,Quarantine_Duration_Entry_Exit,Serial_Testing_Freq,False_Positive_Risk
+BD Veritor,12,11,6,0.013
+BinaxNOW (FDA),11,10,7,0.031
+BinaxNOW (Community),11,7,8,0.012
+BinaxNOW,11,8,7,0.016
+CareStart (Anterior Nasal Swab - FDA),11,10,7,0.002
+CareStart (Nasopharyngeal Swab),11,6,7,0.015
+CareStart (Anterior Nasal Swab - External),11,10,7,0.035
+CareStart (Anterior Nasal Swab),11,10,7,0.034
+Celltrion DiaTrust,11,6,7,0.021
+Clip COVID,11,6,8,0.002
+Ellume,11,6,7,0.063
+Liaison (Anterior Nasal Swab),11,6,8,0.002
+Liaison (Nasalpharyngeal Swab),11,7,8,0.015
+LumiraDX (Anterior Nasal Swab),11,6,8,0.061
+LumiraDX (Nasopharyngeal Swabs),11,6,8,0.042
+Omnia,11,9,7,0.002
+SCoV-2,11,10,7,0.002
+Simoa,11,6,8,0.002
+Sofia (FDA),11,7,8,0.002
+Sofia (CDC),12,10,6,0.038
+Sofia,11,10,7,0.028
+Sofia 2 Flu+SARS,11,6,7,0.002
+Status COVID+Flu,11,7,7,0.002
+Vitros,12,10,6,0.002
