@@ -3,15 +3,13 @@ clear;
 
 figure('units','normalized','outerposition',[0.05 0.05 0.5 0.6]);
 subplot('Position',[0.14,0.193648648648649,0.84,0.78472972972973]);
-load('MLE-Estimate-RTPCR-Hill.mat','beta','TPtID','TDate','TResult','PtID','par');
+load('MLE-Estimate-RTPCR-Hill_Incubation_8_29_days.mat','beta','TPtID','TDate','TResult','PtID','par');
 TI=par(1:end-2);
 [~,b]=ismember(TPtID,PtID);
 dt=round(TDate'-TI(b(b>0)));
 t=linspace(0,40,1001);
 
-tL=2.9;
-
-p = PCRSens(t,beta,tL);
+p = PCRSens(t,beta);
 plot(t,p,'k','LineWidth',2)
 hold on;
  %scatter(dt(dt>0),TResult(dt>0),40,'k','filled')
@@ -33,22 +31,3 @@ ylabel('Sensitivity','Fontsize',28);
 xlabel('Days post-infection','Fontsize',28);
 
 print(gcf,'PCR-Hill','-dpng','-r300');
-
-figure('units','normalized','outerposition',[0.05 0.05 0.5 0.6]);
-subplot('Position',[0.14,0.193648648648649,0.84,0.78472972972973]);
-
-
-plot(t,p,'k','LineWidth',2); hold on
-S = TestSensitivityOLD(t,8.29,2.9,inf,[],0);
-
-plot(t,S,'r','LineWidth',2); 
-
-legend({'Asymptomatic sensitivity curve','Symptomatic sensitivity curve'},'Fontsize',22);
-
-box off;
-set(gca,'LineWidth',2,'tickdir','out','XTick',[0:5:40],'Xminortick','on','YTick',[0:0.1:1],'YminorTick','on','Fontsize',26);
-ylabel('Sensitivity','Fontsize',28);
-xlabel('Days post-infection','Fontsize',28);
-
-
-print(gcf,'NewvsOld','-dpng','-r300');
