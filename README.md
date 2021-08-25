@@ -2,7 +2,7 @@
 
 Chad R. Wells, Abhishek Pandey, Seyed M. Moghadas, Burton H. Singer, Gary Krieger, Richard J.L. Herron, David E. Turner , Justin P. Abshire , Kimberly M. Phillips , A. Michael Donoghue, Alison P. Galvani and Jeffrey P. Townsend
 
-Copyright (C) <2020>, Chad R. Wells et. al. All rights reserved. Released under the GNU General Public License (GPL)
+Copyright (C) <2021>, Chad R. Wells et. al. All rights reserved. Released under the GNU General Public License (GPL)
 
 This repository contains codes and data used to simulate and analyze COVID- testing strategies in the scenarios of 
 1. Quarnatine
