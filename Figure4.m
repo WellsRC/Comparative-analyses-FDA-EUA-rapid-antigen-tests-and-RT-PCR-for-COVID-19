@@ -5,7 +5,9 @@ close all;
 clear;
 figure('units','normalized','outerposition',[0.05 0.05 1 1]);
 subplot('Position',[0.091,0.12,0.847689075630252,0.861631205673759]);
-pA=0.308;
+addpath([pwd '\Delta_Variant']);
+
+[pA,~,~,~,~] = BaselineParameters;
 
 f=[1:14];
 R=zeros(length(f),11);
@@ -13,7 +15,7 @@ R=zeros(length(f),11);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Expected transmission
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-load('Testing_Frequency_RTPCR_Hellewell.mat')
+load([num2str(0) '-day_Delay_Testing_Frequency_RTPCR_Hellewell.mat']);
 R(:,1)=(1-pA).*RTotS+pA.*RTotA;
 
 load('Testing_Frequency_LumiraDX (Anterior Nasal Swab)_Hellewell.mat')
@@ -104,4 +106,4 @@ set(gca,'LineWidth',2,'Tickdir','out','Fontsize',26,'xtick',(xxtick),'xticklabel
 xlim([7.5*10^(-4) 0.5]);
 ylim([0 1.7]);
 
-print(gcf,['Figure4A.png'],'-dpng','-r600');
+print(gcf,['Figure4.png'],'-dpng','-r600');

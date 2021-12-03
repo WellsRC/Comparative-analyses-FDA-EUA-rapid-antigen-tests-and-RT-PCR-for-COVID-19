@@ -3,12 +3,11 @@ close all;
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 % % Hellewell et al (RTPCR)
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-ts=8.29;
-tL=2.9;
+ts=4.4;
 
 figure('units','normalized','outerposition',[0.1 0.1 0.6 0.6]);
 subplot('Position',[0.095070422535211,0.177867863572038,0.881161971830986,0.746456460752287]);
-load('MLE-Estimate-RTPCR-Hill_Incubation_8_29_days.mat','beta','TPtID','TDate','TResult','PtID','par');
+load('MLE-Estimate-RTPCR.mat','beta','TPtID','TDate','TResult','PtID','par');
 
 betaRTPCR=beta;
 TI=par(1:end-2);
@@ -44,5 +43,5 @@ print(gcf,['RTPCR_Sensitivity.png'],'-dpng','-r600');
 load('RAgTest_Name_Order.mat')
 Ntest=length(testName);
 for ii=1:Ntest
-    SIFigure_Test(testName{ii},ts,tL,testName)
+    SIFigure_Test(testName{ii},ts,testName)
 end

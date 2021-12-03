@@ -4,29 +4,48 @@
 close all;
 
 
+[pA,~,~,~,~] = BaselineParameters;
 CTest=[hex2rgb('#231B12');hex2rgb('#375E97');hex2rgb('#486824');hex2rgb('#F9A603');hex2rgb('#CF3721');hex2rgb('#810f7c')];
 Freq=[1:14];
-R=zeros(length(Freq),5);
+
+RNoTest=integral(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,td,1),0,inf);
+
+R=zeros(length(Freq),6);
+R_UN=zeros(length(Freq),1000,6);
 % RT-PCR with one day delay
 load([num2str(1) '-day_Delay_Testing_Frequency_RTPCR_Hellewell.mat']);
 R(:,1)=(1-pA).*RTotS+pA.*RTotA;
-
-RNoTest=integral(@(t)InfectiousnessfromInfection(t,R0S,R0A,pA,ts,tL,td,1),0,inf);
 RRTPCRDelay=R(:,1);
+
+load([num2str(1) '-day_Delay_Testing_Frequency_RTPCR_Hellewell_Uncertainty.mat']);
+R_UN(:,:,1)=(1-pA).*RTotSv+pA.*RTotAv;
+
+
 load('Testing_Frequency_LumiraDX (Anterior Nasal Swab)_Hellewell.mat')
 R(:,2)=(1-pA).*RTotS+pA.*RTotA;
+load('Testing_Frequency_LumiraDX (Anterior Nasal Swab)_Hellewell_Uncertainty.mat')
+R_UN(:,:,2)=(1-pA).*RTotSv+pA.*RTotAv;
 
 load('Testing_Frequency_Sofia (FDA)_Hellewell.mat')
 R(:,3)=(1-pA).*RTotS+pA.*RTotA;
+load('Testing_Frequency_Sofia (FDA)_Hellewell_Uncertainty.mat')
+R_UN(:,:,3)=(1-pA).*RTotSv+pA.*RTotAv;
+
 
 load('Testing_Frequency_BinaxNOW (FDA)_Hellewell.mat')
 R(:,4)=(1-pA).*RTotS+pA.*RTotA;
+load('Testing_Frequency_BinaxNOW (FDA)_Hellewell_Uncertainty.mat')
+R_UN(:,:,4)=(1-pA).*RTotSv+pA.*RTotAv;
 
 load('Testing_Frequency_BD Veritor_Hellewell.mat')
 R(:,5)=(1-pA).*RTotS+pA.*RTotA;
+load('Testing_Frequency_BD Veritor_Hellewell_Uncertainty.mat')
+R_UN(:,:,5)=(1-pA).*RTotSv+pA.*RTotAv;
 
 load('Testing_Frequency_CareStart (Anterior Nasal Swab - FDA)_Hellewell.mat')
 R(:,6)=(1-pA).*RTotS+pA.*RTotA;
+load('Testing_Frequency_CareStart (Anterior Nasal Swab - FDA)_Hellewell_Uncertainty.mat')
+R_UN(:,:,6)=(1-pA).*RTotSv+pA.*RTotAv;
 
 figure('units','normalized','outerposition',[0.05 0.05 1 1]);
 subplot('Position',[0.097689075630252,0.586605876393113,0.37,0.4]);
@@ -41,10 +60,11 @@ text(18.07,1.282./1.3*2.1,'A','Fontsize',34,'FontWeight','bold');
 xlim([0.5 14.5]);
 for ii=1:6
    b(ii).FaceColor=CTest(ii,:); 
+   errorbar(b(ii).XEndPoints,b(ii).YEndPoints,b(ii).YEndPoints-prctile(R_UN(:,:,ii),2.5),prctile(R_UN(:,:,ii),97.5)-b(ii).YEndPoints,'.','Markersize',10^(-16),'color',[0.75 0.75 0.75]);
 end
 legend({'RT-PCR (1-day delay)','LumiraDx','Sofia','BinaxNOW','BD Veritor','CareStart'},'Fontsize',18,'NumColumns',3,'Position',[0.100665266106443,0.921816961567413,0.326155454859513,0.067375884652742]);
 legend boxoff;
-set(gca,'LineWidth',2,'Tickdir','out','Fontsize',20,'XTick',[1:14],'Xminortick','off','YTick',[0:0.2:2],'ylim',[0 2.1],'Yminortick','on','xdir', 'reverse');
+set(gca,'LineWidth',2,'Tickdir','out','Fontsize',20,'XTick',[1:14],'Xminortick','off','YTick',[0:0.2:2],'ylim',[0 3.2],'Yminortick','on','xdir', 'reverse');
 
 ylabel({'Effective','reproduction number'},'Fontsize',24);
 
@@ -74,7 +94,7 @@ for ii=1:6
 end
 legend({'No delay','1-day delay','2-day delay','3-day delay','4-day delay','5-day delay'},'Fontsize',18,'NumColumns',3,'Location','NorthWest');
 legend boxoff;
-set(gca,'LineWidth',2,'Tickdir','out','Fontsize',20,'XTick',[1:14],'Xminortick','off','YTick',[0:0.2:2],'ylim',[0 2.1],'Yminortick','on','xdir', 'reverse' );
+set(gca,'LineWidth',2,'Tickdir','out','Fontsize',20,'XTick',[1:14],'Xminortick','off','YTick',[0:0.2:2],'ylim',[0 3.2],'Yminortick','on','xdir', 'reverse' );
 
 ylabel({'Effective','reproduction number'},'Fontsize',24);
 
