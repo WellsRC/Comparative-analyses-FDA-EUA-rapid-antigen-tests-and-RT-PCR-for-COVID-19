@@ -1,6 +1,8 @@
 clear;
 close all;
 
+addpath([pwd '\Delta_Variant']);
+addpath([pwd '\Delta_Variant\Results']);
 [pAb,~,R0b,~,~] = BaselineParameters;
 
 load('RAgTest_Name.mat','testName');
@@ -60,3 +62,6 @@ for TestN=1:NumTests
     text(0.475375375375376,1.01016333938294,0,'B','Fontsize',32,'FontWeight','bold');
     print(gcf,['pA_R0_' testNameP '.png'],'-dpng','-r600');
 end
+
+rmpath([pwd '\Delta_Variant']);
+rmpath([pwd '\Delta_Variant\Results']);

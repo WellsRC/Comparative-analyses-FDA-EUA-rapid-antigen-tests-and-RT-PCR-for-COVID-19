@@ -68,7 +68,7 @@ for TestN=1:NumTests
 
                 timetoff=[0:dT:(floor(td))];
                 NT=length([timetoff]);
-                temp=cell(NT(dT),1);
+                temp=cell(NT,1);
 
                 for ii=1:length([timetoff])
                     temp{ii}=betaAg;
@@ -79,8 +79,8 @@ for TestN=1:NumTests
             RTotS(ns)=sum(RS);
             RTotA(ns)=sum(RA);
         end
-        RTotAv(dT,:)=RTotAv;
-        RTotSv(dT,:)=RTotSv;
+        RTotAv(dT,:)=RTotA;
+        RTotSv(dT,:)=RTotS;
     end
     save(['Testing_Frequency_' testName{TestN} '_DeltaVOC_Uncertainty.mat']);
 end

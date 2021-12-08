@@ -1,25 +1,25 @@
-testName,Quarantine_Duration_Exit,Quarantine_Duration_Entry_Exit,Serial_Testing_Freq,False_Positive_Risk
-BD Veritor,12,11,6,0.013
-BinaxNOW (FDA),11,10,7,0.031
-BinaxNOW (Community),11,7,8,0.012
-BinaxNOW,11,8,7,0.016
-CareStart (Anterior Nasal Swab - FDA),11,10,7,0.002
-CareStart (Nasopharyngeal Swab),11,6,7,0.015
-CareStart (Anterior Nasal Swab - External),11,10,7,0.035
-CareStart (Anterior Nasal Swab),11,10,7,0.034
-Celltrion DiaTrust,11,6,7,0.021
-Clip COVID,11,6,8,0.002
-Ellume,11,6,7,0.063
-Liaison (Anterior Nasal Swab),11,6,8,0.002
-Liaison (Nasalpharyngeal Swab),11,7,8,0.015
-LumiraDX (Anterior Nasal Swab),11,6,8,0.061
-LumiraDX (Nasopharyngeal Swabs),11,6,8,0.042
-Omnia,11,9,7,0.002
-SCoV-2,11,10,7,0.002
-Simoa,11,6,8,0.002
-Sofia (FDA),11,7,8,0.002
-Sofia (CDC),12,10,6,0.038
-Sofia,11,10,7,0.028
-Sofia 2 Flu+SARS,11,6,7,0.002
-Status COVID+Flu,11,7,7,0.002
-Vitros,12,10,6,0.002
+testName,Quarantine_Duration_Exit_1,Quarantine_Duration_Exit_2,Quarantine_Duration_Exit_3,Quarantine_Duration_Entry_Exit_1,Quarantine_Duration_Entry_Exit_2,Quarantine_Duration_Entry_Exit_3,Serial_Testing_Freq,False_Positive_Risk
+BD Veritor,8,8,8,7,7,8,2,0.039
+BinaxNOW (FDA),8,8,8,7,7,7,2,0.104
+BinaxNOW (Community),8,8,8,7,7,7,2,0.047
+BinaxNOW,8,8,8,7,7,7,2,0.056
+CareStart (Anterior Nasal Swab - FDA),8,8,8,7,7,7,2,0.007
+CareStart (Nasopharyngeal Swab),8,8,8,6,6,7,3,0.036
+CareStart (Anterior Nasal Swab - External),8,8,8,7,7,7,2,0.117
+CareStart (Anterior Nasal Swab),8,8,8,7,7,7,2,0.112
+Celltrion DiaTrust,8,8,8,6,6,7,3,0.049
+Clip COVID,8,8,8,7,6,7,3,0.005
+Ellume,8,8,8,6,6,7,3,0.141
+Liaison (Anterior Nasal Swab),8,8,8,7,6,7,3,0.005
+Liaison (Nasalpharyngeal Swab),8,8,8,7,6,7,2,0.057
+LumiraDX (Anterior Nasal Swab),8,8,8,6,6,7,3,0.155
+LumiraDX (Nasopharyngeal Swabs),8,8,8,6,6,7,3,0.108
+Omnia,8,8,8,7,7,7,2,0.007
+SCoV-2,8,8,8,7,7,7,2,0.007
+Simoa,8,8,8,6,6,7,3,0.005
+Sofia (FDA),8,8,8,7,6,7,3,0.005
+Sofia (CDC),8,8,8,7,7,8,2,0.109
+Sofia,8,8,8,7,7,7,2,0.094
+Sofia 2 Flu+SARS,8,8,8,7,6,7,3,0.005
+Status COVID+Flu,8,8,8,7,6,7,2,0.007
+Vitros,8,8,8,7,7,8,2,0.007

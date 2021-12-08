@@ -1,10 +1,10 @@
 clear;
-close all;
+% close all;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 % Hellewell et al
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 addpath([pwd '\Delta_Variant']);
-addpath([pwd '\PPA_RA_Tests']);
+addpath([pwd '\Delta_Variant\Results']);
 [pA,~,~,ts,~] = BaselineParameters;
 CTest=[hex2rgb('#231B12');hex2rgb('#375E97');hex2rgb('#486824');hex2rgb('#F9A603');hex2rgb('#CF3721');hex2rgb('#810f7c')];
 
@@ -46,10 +46,10 @@ plot(t,S,'-h','color',CTest(6,:),'LineWidth',2,'MarkerFaceColor',CTest(5,:),'Mar
 plot(ts.*ones(101,1),linspace(0,1,101),'-.','color',[0.7 0.7 0.7],'LineWidth',2);
 set(gca,'LineWidth',2,'tickdir','out','Fontsize',20,'XTick',[0:2:40],'xlim',[0 22],'XMinorTick','on','Yminortick','on','YTick',[0:0.2:1],'Ylim',[0 1]);
 xlabel('Days post-infection','Fontsize',24);
-ylabel('Sensitivity','Fontsize',24);
+ylabel('Diagnostic sensitivity','Fontsize',24);
 box off;
 legend({'RT-PCR','LumiraDx','Sofia','BinaxNOW','BD Veritor','CareStart'},'Fontsize',20,'NumColumns',3,'Location','NorthEast');
 legend boxoff;
 rmpath([pwd '\Delta_Variant']);
-rmpath([pwd '\PPA_RA_Tests']);
+addpath([pwd '\Delta_Variant\Results']);
 print(gcf,['Figure1.png'],'-dpng','-r600');

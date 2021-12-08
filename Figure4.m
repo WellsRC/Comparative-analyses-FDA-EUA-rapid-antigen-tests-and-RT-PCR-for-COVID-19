@@ -5,8 +5,9 @@ close all;
 clear;
 figure('units','normalized','outerposition',[0.05 0.05 1 1]);
 subplot('Position',[0.091,0.12,0.847689075630252,0.861631205673759]);
-addpath([pwd '\Delta_Variant']);
 
+addpath([pwd '\Delta_Variant']);
+addpath([pwd '\Delta_Variant\Results']);
 [pA,~,~,~,~] = BaselineParameters;
 
 f=[1:14];
@@ -15,29 +16,29 @@ R=zeros(length(f),11);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Expected transmission
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-load([num2str(0) '-day_Delay_Testing_Frequency_RTPCR_Hellewell.mat']);
+load([num2str(0) '-day_Delay_Testing_Frequency_RTPCR_DeltaVOC.mat']);
 R(:,1)=(1-pA).*RTotS+pA.*RTotA;
 
-load('Testing_Frequency_LumiraDX (Anterior Nasal Swab)_Hellewell.mat')
+load('Testing_Frequency_LumiraDX (Anterior Nasal Swab)_DeltaVOC.mat')
 R(:,2)=(1-pA).*RTotS+pA.*RTotA;
 
-load('Testing_Frequency_Sofia (FDA)_Hellewell.mat')
+load('Testing_Frequency_Sofia (FDA)_DeltaVOC.mat')
 R(:,3)=(1-pA).*RTotS+pA.*RTotA;
 
-load('Testing_Frequency_BinaxNOW (FDA)_Hellewell.mat')
+load('Testing_Frequency_BinaxNOW (FDA)_DeltaVOC.mat')
 R(:,4)=(1-pA).*RTotS+pA.*RTotA;
 
-load('Testing_Frequency_BD Veritor_Hellewell.mat')
+load('Testing_Frequency_BD Veritor_DeltaVOC.mat')
 R(:,5)=(1-pA).*RTotS+pA.*RTotA;
 
-load('Testing_Frequency_CareStart (Anterior Nasal Swab - FDA)_Hellewell.mat')
+load('Testing_Frequency_CareStart (Anterior Nasal Swab - FDA)_DeltaVOC.mat')
 R(:,6)=(1-pA).*RTotS+pA.*RTotA;
 
 
 MF={'-p','-.s','-.d','-.^','-.o','-.h'};
 
 for dd=1:5
-    load([num2str(dd) '-day_Delay_Testing_Frequency_RTPCR_Hellewell.mat']);
+    load([num2str(dd) '-day_Delay_Testing_Frequency_RTPCR_DeltaVOC.mat']);
     R(:,dd+6)=(1-pA).*RTotS+pA.*RTotA;
 end
 
@@ -89,7 +90,7 @@ for dd=1:5
 end
 
 XX=[0.145 0.25 0.145 0.25 0.145 0.25 0.145 0.25 0.145 0.25 0.145 0.25 0.145 0.25];
-YY=[1.2 1.2 1.15 1.15 1.1 1.1 1.05 1.05 1 1 0.95 0.95 0.9 0.9]+0.3;
+YY=(2.8/1.7).*([1.2 1.2 1.15 1.15 1.1 1.1 1.05 1.05 1 1 0.95 0.95 0.9 0.9]+0.3);
 scatter((XX),YY,250.*exp(-f./5),[0.5 0.5 0.5],'filled')
 for ii=1:14
    text((XX(ii)+0.01),YY(ii),[num2str(ii) '-day'],'color',[0.5 0.5 0.5],'fontsize',22);
@@ -102,8 +103,12 @@ xlabel('Probability of at least one false-postive over two weeks','Fontsize',28)
 box off;
 legend({'RT-PCR (No delay)','LumiraDx','Sofia','BinaxNOW','BD Veritor','CareStart','RT-PCR 1-day delay','RT-PCR 2-day delay','RT-PCR 3-day delay','RT-PCR 4-day delay','RT-PCR 5-day delay'},'Fontsize',22,'NumColumns',4,'Location','NorthEast');
 legend boxoff;
-set(gca,'LineWidth',2,'Tickdir','out','Fontsize',26,'xtick',(xxtick),'xticklabel',{num2str(xxtick')},'xscale','log','YTick',[0:0.1:1.7]);
+set(gca,'LineWidth',2,'Tickdir','out','Fontsize',26,'xtick',(xxtick),'xticklabel',{num2str(xxtick')},'xscale','log','YTick',[0:0.2:2.8],'Yminortick','on');
 xlim([7.5*10^(-4) 0.5]);
-ylim([0 1.7]);
+ylim([0 2.8]);
+
+
+rmpath([pwd '\Delta_Variant']);
+rmpath([pwd '\Delta_Variant\Results']);
 
 print(gcf,['Figure4.png'],'-dpng','-r600');

@@ -1,10 +1,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
 % Plots the probability of PQT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
-close all;
+% close all;
 % Colur blind palete
 % CTest=[hex2rgb('#C6D4E1');hex2rgb('#0F2080');hex2rgb('#F5793A');hex2rgb('#A95AA1');hex2rgb('#85C0F9')];
 addpath([pwd '\Delta_Variant']);
+addpath([pwd '\Delta_Variant\Results']);
 
 [pA,~,~,~,~] = BaselineParameters;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
@@ -18,25 +19,27 @@ CTest=[hex2rgb('#231B12');hex2rgb('#375E97');hex2rgb('#486824');hex2rgb('#F9A603
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Risk=1;
 R=zeros(14,6);
-load('TestingonExit_RTPCR_24hrDelay_Hellewell.mat')
+load('TestingonExit_RTPCR_24hrDelay_DeltaVOC.mat')
 R(:,1)=Probability_Onward((1-pA).*IDSLS+pA.*IDSLA,Risk);
 
-load('TestingonExit_RTPCR_24hrDelay_Hellewell_Uncertainty.mat')
-RTPCR_Un=Probability_Onward((1-pA).*IDSLS+pA.*IDSLA,Risk);
+load('TestingonExit_RTPCR_24hrDelay_DeltaVOC_Uncertainty.mat')
+RTPCR_Un=Probability_Onward((1-pA).*IDSLSv+pA.*IDSLAv,Risk);
 
-load('TestingonExit_LumiraDX (Anterior Nasal Swab)_NoDelay_Hellewell.mat')
+fprintf('The probability of PQT for an RT-PCR test conducted on exit from a 7-day quarantine is %5.4f (%5.4f-%5.4f) \n',[R(q==7,1) prctile(RTPCR_Un(:,q==7),[2.5 97.5])]);   
+
+load('TestingonExit_LumiraDX (Anterior Nasal Swab)_NoDelay_DeltaVOC.mat')
 R(:,2)=Probability_Onward((1-pA).*IDSLS+pA.*IDSLA,Risk);
 
-load('TestingonExit_Sofia (FDA)_NoDelay_Hellewell.mat')
+load('TestingonExit_Sofia (FDA)_NoDelay_DeltaVOC.mat')
 R(:,3)=Probability_Onward((1-pA).*IDSLS+pA.*IDSLA,Risk);
 
-load('TestingonExit_BinaxNOW (FDA)_NoDelay_Hellewell.mat')
+load('TestingonExit_BinaxNOW (FDA)_NoDelay_DeltaVOC.mat')
 R(:,4)=Probability_Onward((1-pA).*IDSLS+pA.*IDSLA,Risk);
 
-load('TestingonExit_BD Veritor_NoDelay_Hellewell.mat')
+load('TestingonExit_BD Veritor_NoDelay_DeltaVOC.mat')
 R(:,5)=Probability_Onward((1-pA).*IDSLS+pA.*IDSLA,Risk);
 
-load('TestingonExit_CareStart (Anterior Nasal Swab - FDA)_NoDelay_Hellewell.mat')
+load('TestingonExit_CareStart (Anterior Nasal Swab - FDA)_NoDelay_DeltaVOC.mat')
 R(:,6)=Probability_Onward((1-pA).*IDSLS+pA.*IDSLA,Risk);
 
 
@@ -44,24 +47,24 @@ load('RAgTest_PlotOrder.mat');
 % testName=OrderPlotTest;
 NumTest=length(testName);
 RAllAgTest=zeros(14,NumTest);
-RAllAgTest_Un=zeros(14,1000,NumTest);
+RAllAgTest_Un=zeros(1000,14,NumTest);
 
 for kk=1:NumTest
-    load(['TestingonExit_' testName{kk} '_NoDelay_Hellewell.mat'],'IDSLS','IDSLA');
+    load(['TestingonExit_' testName{kk} '_NoDelay_DeltaVOC.mat'],'IDSLS','IDSLA');
     RAllAgTest(:,kk)=Probability_Onward((1-pA).*IDSLS+pA.*IDSLA,Risk);
-    load(['TestingonExit_' testName{kk} '_NoDelay_Hellewell_Uncertainty.mat'],'IDSLSv','IDSLAv');
+    load(['TestingonExit_' testName{kk} '_NoDelay_DeltaVOC_Uncertainty.mat'],'IDSLSv','IDSLAv');
     RAllAgTest_Un(:,:,kk)=Probability_Onward((1-pA).*IDSLSv+pA.*IDSLAv,Risk);
 end
 
 AgBetter=zeros(14,1);
-AgBetter_Un=zeros(14,1000);
+AgBetter_Un=zeros(1000,14);
 
 for qq=1:14
     fAgBetter=find(RAllAgTest(qq,:)<=R(qq,1));
     AgBetter(qq)=length(fAgBetter);
     for jj=1:1000
-        fAgBetter=find(RAllAgTest_Un(qq,ii,:)<=RTPCR_Un(qq,ii));
-        AgBetter_Un(qq,ii)=length(fAgBetter);
+        fAgBetter=find(RAllAgTest_Un(jj,qq,:)<=RTPCR_Un(jj,qq));
+        AgBetter_Un(jj,qq)=length(fAgBetter);
     end
 end
 
@@ -87,7 +90,7 @@ text(-1.89,0.585,'A','Fontsize',34,'FontWeight','bold');
 subplot('Position',[0.18114406779661./2,0.105,0.79885593220339./2,0.39]);
 
  
-   errorbar(q,AgBetter,AgBetter-prctile(AgBetter_Un,2.5),prctile(AgBetter_Un,97.5)-AgBetter,'k-o','MarkerSize',10,'MarkerEdgeColor','k','MarkerFaceColor','k','LineWidth',2);hold on;
+   errorbar(q,AgBetter,AgBetter-prctile(AgBetter_Un,2.5)',prctile(AgBetter_Un,97.5)'-AgBetter,'k-o','MarkerSize',10,'MarkerEdgeColor','k','MarkerFaceColor','k','LineWidth',2);hold on;
 
 box off;
 grid on;
@@ -113,26 +116,26 @@ text(-1.89,18.275,'C','Fontsize',34,'FontWeight','bold');
 
 Risk=1;
 R=zeros(14,6);
-load('TestingonExit_RTPCR_24hrDelay_Hellewell.mat')
+load('TestingonExit_RTPCR_24hrDelay_DeltaVOC.mat')
 R(:,1)=Probability_Onward((1-pA).*IDSLS+pA.*IDSLA,Risk);
 
 
-load('TestingonExit_RTPCR_24hrDelay_Hellewell_Uncertainty.mat')
-RTPCR_Un=Probability_Onward((1-pA).*IDSLS+pA.*IDSLA,Risk);
+load('TestingonExit_RTPCR_24hrDelay_DeltaVOC_Uncertainty.mat')
+RTPCR_Un=Probability_Onward((1-pA).*IDSLSv+pA.*IDSLAv,Risk);
 
-load('TestingonEntryExit_LumiraDX (Anterior Nasal Swab)_NoDelay_Hellewell.mat')
+load('TestingonEntryExit_LumiraDX (Anterior Nasal Swab)_NoDelay_DeltaVOC.mat')
 R(:,2)=Probability_Onward((1-pA).*IDSLS+pA.*IDSLA,Risk);
 
-load('TestingonEntryExit_Sofia (FDA)_NoDelay_Hellewell.mat')
+load('TestingonEntryExit_Sofia (FDA)_NoDelay_DeltaVOC.mat')
 R(:,3)=Probability_Onward((1-pA).*IDSLS+pA.*IDSLA,Risk);
 
-load('TestingonEntryExit_BinaxNOW (FDA)_NoDelay_Hellewell.mat')
+load('TestingonEntryExit_BinaxNOW (FDA)_NoDelay_DeltaVOC.mat')
 R(:,4)=Probability_Onward((1-pA).*IDSLS+pA.*IDSLA,Risk);
 
-load('TestingonEntryExit_BD Veritor_NoDelay_Hellewell.mat')
+load('TestingonEntryExit_BD Veritor_NoDelay_DeltaVOC.mat')
 R(:,5)=Probability_Onward((1-pA).*IDSLS+pA.*IDSLA,Risk);
 
-load('TestingonEntryExit_CareStart (Anterior Nasal Swab - FDA)_NoDelay_Hellewell.mat')
+load('TestingonEntryExit_CareStart (Anterior Nasal Swab - FDA)_NoDelay_DeltaVOC.mat')
 R(:,6)=Probability_Onward((1-pA).*IDSLS+pA.*IDSLA,Risk);
 
 
@@ -140,24 +143,24 @@ load('RAgTest_PlotOrder.mat');
 % testName=OrderPlotTest;
 NumTest=length(testName);
 RAllAgTest=zeros(14,NumTest);
-RAllAgTest_Un=zeros(14,1000,NumTest);
+RAllAgTest_Un=zeros(1000,14,NumTest);
 
 for kk=1:NumTest
-    load(['TestingonEntryExit_' testName{kk} '_NoDelay_Hellewell.mat'],'IDSLS','IDSLA');
+    load(['TestingonEntryExit_' testName{kk} '_NoDelay_DeltaVOC.mat'],'IDSLS','IDSLA');
     RAllAgTest(:,kk)=Probability_Onward((1-pA).*IDSLS+pA.*IDSLA,Risk);
-    load(['TestingonEntryExit_' testName{kk} '_NoDelay_Hellewell_Uncertainty.mat'],'IDSLSv','IDSLAv');
+    load(['TestingEntryExit_' testName{kk} '_NoDelay_DeltaVOC_Uncertainty.mat'],'IDSLSv','IDSLAv');
     RAllAgTest_Un(:,:,kk)=Probability_Onward((1-pA).*IDSLSv+pA.*IDSLAv,Risk);
 end
 
 AgBetter=zeros(14,1);
-AgBetter_Un=zeros(14,1000);
+AgBetter_Un=zeros(1000,14);
 
 for qq=1:14
     fAgBetter=find(RAllAgTest(qq,:)<=R(qq,1));
     AgBetter(qq)=length(fAgBetter);
     for jj=1:1000
-        fAgBetter=find(RAllAgTest_Un(qq,ii,:)<=RTPCR_Un(qq,ii));
-        AgBetter_Un(qq,ii)=length(fAgBetter);
+        fAgBetter=find(RAllAgTest_Un(jj,qq,:)<=RTPCR_Un(jj,qq));
+        AgBetter_Un(jj,qq)=length(fAgBetter);
     end
 end
 
@@ -183,7 +186,7 @@ legend boxoff;
 
 subplot('Position',[0.59,0.105,0.79885593220339./2,0.39]);
 
-errorbar(q,AgBetter,AgBetter-prctile(AgBetter_Un,2.5),prctile(AgBetter_Un,97.5)-AgBetter,'k-o','MarkerSize',10,'MarkerEdgeColor','k','MarkerFaceColor','k','LineWidth',2);hold on;
+errorbar(q,AgBetter,AgBetter-prctile(AgBetter_Un,2.5)',prctile(AgBetter_Un,97.5)'-AgBetter,'k-o','MarkerSize',10,'MarkerEdgeColor','k','MarkerFaceColor','k','LineWidth',2);hold on;
 
 box off;
 grid on;
@@ -202,5 +205,6 @@ ylim([0 NumTest]);
 ylabel({'Fraction of antigen tests','outperforming RT-PCR'},'Fontsize',24);
 text(-1.89,18.275,'D','Fontsize',34,'FontWeight','bold');
 rmpath([pwd '\Delta_Variant']);
+rmpath([pwd '\Delta_Variant\Results']);
 
 print(gcf,'Figure2','-dpng','-r300');

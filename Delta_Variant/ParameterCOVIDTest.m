@@ -3,7 +3,10 @@ if(MLEv~=0)
     load('MLE-Estimate-RTPCR','beta');
     betaRTPCR=beta;
 else
+    load('MLE-Estimate-RTPCR','beta','MLE');
     load('Uncertainty-BetaEstimate-RTPCR.mat','L','betaRTU');
+    betaRTU=[beta; betaRTU];
+    L=[-MLE;L];
     w=cumsum(exp(L)./sum(exp(L)));
     r=rand(1);
     findx=find(w>=r,1);
