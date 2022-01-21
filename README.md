@@ -1,4 +1,4 @@
-# Comparative analyses of all FDA EUA-approved  rapid antigen tests and RT-PCR for COVID-19 quarantine and surveillance-based isolation
+# (CURRENTLY BEING REVISED) Comparative analyses of all FDA EUA-approved  rapid antigen tests and RT-PCR for COVID-19 quarantine and surveillance-based isolation
 
 Chad R. Wells, Abhishek Pandey, Seyed M. Moghadas, Burton H. Singer, Gary Krieger, Richard J.L. Herron, David E. Turner , Justin P. Abshire , Kimberly M. Phillips , A. Michael Donoghue, Alison P. Galvani and Jeffrey P. Townsend
 
