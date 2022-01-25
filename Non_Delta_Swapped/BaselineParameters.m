@@ -3,9 +3,9 @@ function [pA,IncubationI,R0,ts,td] = BaselineParameters
 
 pA=0.351;
 
-R0=2.5;
+R0=3.2;
 
-ts=5.72;
+ts=5.723;
 
 td=ts+20;
 

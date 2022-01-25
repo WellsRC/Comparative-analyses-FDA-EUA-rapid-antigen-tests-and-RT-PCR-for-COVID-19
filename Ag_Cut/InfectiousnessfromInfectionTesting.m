@@ -1,4 +1,4 @@
-function R = InfectiousnessfromInfectionTesting(ttemp,utemp,timet,testtype,R0S,R0A,pA,ts,td,AgCutoff,SelfIsolate,RTPCRmodel)
+function R = InfectiousnessfromInfectionTesting(ttemp,utemp,timet,testtype,AgCutoffPSO,R0S,R0A,pA,ts,td,SelfIsolate,RTPCRmodel)
 %InfectiousnessfromInfection returns the infectiousness at time t given total virus
 %shed and R0
 
@@ -29,7 +29,7 @@ t=ttemp(:)';
 RA=R0A.*ViralShedding_Asymptomatic(t,td);
 SA=zeros(length(timet),length(u));
 for jj=1:length(timet)
-    SA(jj,:) = TestSensitivity(u+timet(jj),ts,AgCutoff,[testtype{jj}],RTPCRmodel);
+    SA(jj,:) = TestSensitivity(u+timet(jj),ts,[testtype{jj}],RTPCRmodel,AgCutoffPSO);
 end
 % Computation for symptomatic
 if(SelfIsolate==0)
@@ -41,7 +41,7 @@ end
 
 SS=zeros(length(timet),length(u));
 for jj=1:length(timet)
-    SS(jj,:) = TestSensitivity(u+timet(jj),ts,AgCutoff,[testtype{jj}],RTPCRmodel);
+    SS(jj,:) = TestSensitivity(u+timet(jj),ts,[testtype{jj}],RTPCRmodel,AgCutoffPSO);
 end
 
 %Combine asymptmatic and symptomaic 

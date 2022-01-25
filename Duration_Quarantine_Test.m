@@ -8,7 +8,7 @@ pA=[0.1:0.001:0.95];
 QD=zeros(length(pA),length(R0v));
 for jj=1:length(pA)
     for ii=1:length(R0v)
-        findx=find((pA(jj).*IDSLA+(1-pA(jj)).*IDSLS).*R0v(ii)/R0<=(pAb.*IDSLA(q==7)+(1-pAb).*IDSLS(q==7)));
+        findx=find(Probability_Onward((pA(jj).*IDSLA+(1-pA(jj)).*IDSLS).*(R0v(ii)./R0),1)<=Probability_Onward((pAb.*IDSLA(q==7)+(1-pAb).*IDSLS(q==7)),1));
         if(~isempty(findx))
            QD(jj,ii)=min(findx); 
         end

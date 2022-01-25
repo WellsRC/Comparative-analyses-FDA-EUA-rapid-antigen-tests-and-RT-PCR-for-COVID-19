@@ -4,8 +4,8 @@
 % close all;
 % Colur blind palete
 % CTest=[hex2rgb('#C6D4E1');hex2rgb('#0F2080');hex2rgb('#F5793A');hex2rgb('#A95AA1');hex2rgb('#85C0F9')];
-addpath([pwd '\Non_Delta_Swapped']);
-addpath([pwd '\Non_Delta_Swapped\Results']);
+addpath([pwd '\Non_Delta_Swapped_Fixed']);
+addpath([pwd '\Non_Delta_Swapped_Fixed\Results']);
 
 [pA,~,~,~,~] = BaselineParameters;
 % pA=1;
@@ -78,7 +78,7 @@ text(-1.89,0.585,'A','Fontsize',34,'FontWeight','bold');
 subplot('Position',[0.18114406779661./2,0.105,0.79885593220339./2,0.39]);
 
  
-   plot(q,AgBetter,'k-o','MarkerSize',10,'MarkerEdgeColor','k','MarkerFaceColor','k','LineWidth',2);hold on;
+   plot(q,AgBetter,'-o','color',hex2rgb('#128277'),'MarkerSize',10,'MarkerEdgeColor',hex2rgb('#128277'),'MarkerFaceColor',hex2rgb('#128277'),'LineWidth',2);hold on;
 
 box off;
 grid on;
@@ -162,7 +162,7 @@ legend boxoff;
 
 subplot('Position',[0.59,0.105,0.79885593220339./2,0.39]);
 
-plot(q,AgBetter,'k-o','MarkerSize',10,'MarkerEdgeColor','k','MarkerFaceColor','k','LineWidth',2);hold on;
+plot(q,AgBetter,'-o','color',hex2rgb('#128277'),'MarkerSize',10,'MarkerEdgeColor',hex2rgb('#128277'),'MarkerFaceColor',hex2rgb('#128277'),'LineWidth',2);hold on;
 
 box off;
 grid on;
@@ -180,7 +180,7 @@ xlabel('Duration of quarantine (days)','Fontsize',26);
 ylim([0 NumTest]);
 ylabel({'Fraction of antigen tests','outperforming RT-PCR'},'Fontsize',24);
 text(-1.89,18.275,'D','Fontsize',34,'FontWeight','bold');
-rmpath([pwd '\Non_Delta_Swapped']);
-rmpath([pwd '\Non_Delta_Swapped\Results']);
+rmpath([pwd '\Non_Delta_Swapped_Fixed']);
+rmpath([pwd '\Non_Delta_Swapped_Fixed\Results']);
 
 % print(gcf,'Figure2_General_Swapped','-dpng','-r300');

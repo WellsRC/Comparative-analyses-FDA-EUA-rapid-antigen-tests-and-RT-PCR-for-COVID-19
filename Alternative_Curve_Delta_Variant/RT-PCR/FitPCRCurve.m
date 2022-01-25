@@ -50,7 +50,7 @@ for ii=1:length(PtID)
 end
 
 LB=[UB-30 6 -6];
-UB2=[UB 8 log10(1)];
+UB2=[UB 8 log10(1)]; % Upper bound chosen for the second last parameter such that the MLE curve was smooth and not discrete steps: Calibrated using 0.5 values and looks smooth at scale of dt =0.01 xlim([3.095 3.105])
 
 Gx =[4.230765931945100   0.959892250476516];
 
@@ -75,7 +75,7 @@ save('MLE-Estimate-RTPCR_Alternative.mat');
 
 parv=par(1:end-2);
 Pk=log10(linspace(10^(-1),1,1001));
-b1=linspace(6,9,1001);
+b1=linspace(0.5,8,1001);
 
 [Pk,b1]=meshgrid(Pk,b1);
 Pk=Pk(:);

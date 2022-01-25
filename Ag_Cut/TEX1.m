@@ -7,6 +7,7 @@ pobj=parpool(16); % Parallel pool
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 load('RAgTest_Name.mat','testName');
 NumTests=length(testName);
+AgCutoffPSO=10;
 for TestN=1:NumTests
     q=[1:14]; % Quarantine durations consideredd
     
@@ -19,7 +20,6 @@ for TestN=1:NumTests
 
     % Get Basline parameters
     [~,~,R0,ts,td] = BaselineParameters;
-    AgCutoff=ts+10;
 
     IDSLS=IDSLS(:); % Vectorize the matrix
     IDSLA=IDSLA(:); % Vectorize the matrix
@@ -34,17 +34,16 @@ for TestN=1:NumTests
     testtype{2}=betaAg;
 
     parfor jj=1:14 
-        IDSLS(jj)=((1./ts).*integral2(@(u,t)InfectiousnessfromInfectionTesting(t+u,u,[0 q(jj)],testtype,R0S,R0A,0,ts,td,AgCutoff,SelfIsolate,betaRTPCR),0,ts,q(jj),inf));
-        IDSLA(jj)=((1./td).*integral2(@(u,t)InfectiousnessfromInfectionTesting(t+u,u,[0 q(jj)],testtype,R0S,R0A,1,ts,td,AgCutoff,0,betaRTPCR),0,td,q(jj),inf));  
+        IDSLS(jj)=((1./ts).*integral2(@(u,t)InfectiousnessfromInfectionTesting(t+u,u,[0 q(jj)],testtype,AgCutoffPSO,R0S,R0A,0,ts,td,SelfIsolate,betaRTPCR),0,ts,q(jj),inf));
+        IDSLA(jj)=((1./td).*integral2(@(u,t)InfectiousnessfromInfectionTesting(t+u,u,[0 q(jj)],testtype,AgCutoffPSO,R0S,R0A,1,ts,td,0,betaRTPCR),0,td,q(jj),inf));  
     end
 
-    save(['TestingonEntryExit_' testName{TestN} '_NoDelay_DeltaVOC_AgCutoff.mat']);
+    save(['TestingonEntryExit_' testName{TestN} '_NoDelay_AgCutoff=' num2str(AgCutoffPSO) '.mat']);
 end
 
-load('RTPCR_Parameter_Uncertainty.mat','betaRTPCRv');
 
-NSS=length(betaRTPCRv(:,1));
 
+AgCutoffPSO=fminbnd(@(x)(integral(@(t)ViralShedding_Symptomatic(t,td),0,ts+x)-0.99).^2,0,10);
 for TestN=1:NumTests
     q=[1:14]; % Quarantine durations consideredd
     
@@ -52,34 +51,28 @@ for TestN=1:NumTests
     
 
     % Allcoate memory for output
-    IDSLS=zeros(NSS,1); 
-    IDSLA=zeros(NSS,1); 
+    IDSLS=zeros(1,length(q)); 
+    IDSLA=zeros(1,length(q)); 
 
     % Get Basline parameters
     [~,~,R0,ts,td] = BaselineParameters;
-    AgCutoff=ts+10;
 
     IDSLS=IDSLS(:); % Vectorize the matrix
     IDSLA=IDSLA(:); % Vectorize the matrix
-    
-    IDSLSv=zeros(NSS,length(q)); % Vectorize the matrix
-    IDSLAv=zeros(NSS,length(q)); % Vectorize the matrix
-    
+
     R0S=R0; % Set R0 for symptomatic
     R0A=R0; % Set R0 for asymptomatic
-    
-    for jj=1:14 
-        parfor ns=1:NSS
-            [~,betaAg]=ParameterCOVIDTest(testName{TestN},0);
-            testtype=cell(2,1);
-            testtype{1}=betaAg;
-            testtype{2}=betaAg;
 
-            IDSLS(ns)=((1./ts).*integral2(@(u,t)InfectiousnessfromInfectionTesting(t+u,u,[0 q(jj)],testtype,R0S,R0A,0,ts,td,AgCutoff,SelfIsolate,betaRTPCRv(ns,:)),0,ts,q(jj),inf));
-            IDSLA(ns)=((1./td).*integral2(@(u,t)InfectiousnessfromInfectionTesting(t+u,u,[0 q(jj)],testtype,R0S,R0A,1,ts,td,AgCutoff,0,betaRTPCRv(ns,:)),0,td,q(jj),inf));  
-        end
-        IDSLSv(:,jj)=IDSLS;
-        IDSLAv(:,jj)=IDSLA;
+    
+    [betaRTPCR,betaAg]=ParameterCOVIDTest(testName{TestN},1);
+    testtype=cell(2,1);
+    testtype{1}=betaAg;
+    testtype{2}=betaAg;
+
+    parfor jj=1:14 
+        IDSLS(jj)=((1./ts).*integral2(@(u,t)InfectiousnessfromInfectionTesting(t+u,u,[0 q(jj)],testtype,AgCutoffPSO,R0S,R0A,0,ts,td,SelfIsolate,betaRTPCR),0,ts,q(jj),inf));
+        IDSLA(jj)=((1./td).*integral2(@(u,t)InfectiousnessfromInfectionTesting(t+u,u,[0 q(jj)],testtype,AgCutoffPSO,R0S,R0A,1,ts,td,0,betaRTPCR),0,td,q(jj),inf));  
     end
-    save(['TestingEntryExit_' testName{TestN} '_NoDelay_DeltaVOC_AgCutoff_Uncertainty.mat']);
+
+    save(['TestingonEntryExit_' testName{TestN} '_NoDelay_AgCutoff=' num2str(AgCutoffPSO) '.mat']);
 end

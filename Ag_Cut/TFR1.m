@@ -8,9 +8,9 @@ parpool(16); % Parallel pool
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 load('RAgTest_Name.mat','testName');
 NumTests=length(testName);
+AgCutoffPSO=10;
 for TestN=1:NumTests
     [~,~,R0,ts,td] = BaselineParameters;
-    AgCutoff=ts+10;
 
     SelfIsolate=1; %If sympmatics self-isolate
     R0S=R0;
@@ -37,53 +37,48 @@ for TestN=1:NumTests
 
     parfor dT=1:14  
 
-        [RS,RA] = SerialTesting(testtype{dT},[timetoff{dT}],R0S,R0A,ts,td,AgCutoff,SelfIsolate,NT(dT),dT,betaRTPCR);
+        [RS,RA] = SerialTesting(testtype{dT},AgCutoffPSO,[timetoff{dT}],R0S,R0A,ts,td,SelfIsolate,NT(dT),dT,betaRTPCR);
 
         RTotS(dT)=sum(RS);
         RTotA(dT)=sum(RA);
     end
-    save(['Testing_Frequency_' testName{TestN} '_DeltaVOC_AgCutoff.mat']);
+    save(['Testing_Frequency_' testName{TestN} '_AgCutoff=' num2str(AgCutoffPSO) '.mat']);
 end 
 
-load('RTPCR_Parameter_Uncertainty_Serial.mat','betaRTPCRv');
 
-NSS=length(betaRTPCRv(:,1));
-
+AgCutoffPSO=fminbnd(@(x)(integral(@(t)ViralShedding_Symptomatic(t,td),0,ts+x)-0.99).^2,0,10);
 for TestN=1:NumTests
     [~,~,R0,ts,td] = BaselineParameters;
-    AgCutoff=ts+10;
 
     SelfIsolate=1; %If sympmatics self-isolate
     R0S=R0;
     R0A=R0;
-    RTotA=zeros(1,NSS);
-    RTotS=zeros(1,NSS);
+    RTotA=zeros(14,1);
+    RTotS=zeros(14,1);
 
-    RTotAv=zeros(14,NSS);
-    RTotSv=zeros(14,NSS);
     
-    
+    [betaRTPCR,betaAg]=ParameterCOVIDTest(testName{TestN},1);
 
-    for dT=1:14  
-        parfor ns=1:NSS
-            [~,betaAg]=ParameterCOVIDTest(testName{TestN},1);
+    testtype=cell(14,1);
+    timetoff=cell(14,1);
+    NT=zeros(14,1);
+    for dT=1:14
+        timetoff{dT}=[0:dT:(floor(td))];
+        NT(dT)=length([timetoff{dT}]);
+        temp=cell(NT(dT),1);
 
-                timetoff=[0:dT:(floor(td))];
-                NT=length([timetoff]);
-                temp=cell(NT(dT),1);
-
-                for ii=1:length([timetoff])
-                    temp{ii}=betaAg;
-                end
-                testtype=temp;
-            [RS,RA] = SerialTesting(testtype,[timetoff],R0S,R0A,ts,td,AgCutoff,SelfIsolate,NT,dT,betaRTPCRv(ns,:));
-
-            RTotS(ns)=sum(RS);
-            RTotA(ns)=sum(RA);
+        for ii=1:length([timetoff{dT}])
+            temp{ii}=betaAg;
         end
-        RTotAv(dT,:)=RTotA;
-        RTotSv(dT,:)=RTotS;
+        testtype{dT}=temp;
     end
-    save(['Testing_Frequency_' testName{TestN} '_DeltaVOC_AgCutoff_Uncertainty.mat']);
-end
 
+    parfor dT=1:14  
+
+        [RS,RA] = SerialTesting(testtype{dT},AgCutoffPSO,[timetoff{dT}],R0S,R0A,ts,td,SelfIsolate,NT(dT),dT,betaRTPCR);
+
+        RTotS(dT)=sum(RS);
+        RTotA(dT)=sum(RA);
+    end
+    save(['Testing_Frequency_' testName{TestN} '_AgCutoff=' num2str(AgCutoffPSO) '.mat']);
+end 

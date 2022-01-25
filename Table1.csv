@@ -1,25 +1,25 @@
-testName,Quarantine_Duration_Exit_1,Quarantine_Duration_Exit_2,Quarantine_Duration_Exit_3,Quarantine_Duration_Entry_Exit_1,Quarantine_Duration_Entry_Exit_2,Quarantine_Duration_Entry_Exit_3,Serial_Testing_Freq,False_Positive_Risk
-BD Veritor,8,8,8,7,7,8,2,0.039
-BinaxNOW (FDA),8,8,8,7,7,7,2,0.104
-BinaxNOW (Community),8,8,8,7,7,7,2,0.047
-BinaxNOW,8,8,8,7,7,7,2,0.056
-CareStart (Anterior Nasal Swab - FDA),8,8,8,7,7,7,2,0.007
-CareStart (Nasopharyngeal Swab),8,8,8,6,6,7,3,0.036
-CareStart (Anterior Nasal Swab - External),8,8,8,7,7,7,2,0.117
-CareStart (Anterior Nasal Swab),8,8,8,7,7,7,2,0.112
-Celltrion DiaTrust,8,8,8,6,6,7,3,0.049
-Clip COVID,8,8,8,7,6,7,3,0.005
-Ellume,8,8,8,6,6,7,3,0.141
-Liaison (Anterior Nasal Swab),8,8,8,7,6,7,3,0.005
-Liaison (Nasalpharyngeal Swab),8,8,8,7,6,7,2,0.057
-LumiraDX (Anterior Nasal Swab),8,8,8,6,6,7,3,0.155
-LumiraDX (Nasopharyngeal Swabs),8,8,8,6,6,7,3,0.108
-Omnia,8,8,8,7,7,7,2,0.007
-SCoV-2,8,8,8,7,7,7,2,0.007
-Simoa,8,8,8,6,6,7,3,0.005
-Sofia (FDA),8,8,8,7,6,7,3,0.005
-Sofia (CDC),8,8,8,7,7,8,2,0.109
-Sofia,8,8,8,7,7,7,2,0.094
-Sofia 2 Flu+SARS,8,8,8,7,6,7,3,0.005
-Status COVID+Flu,8,8,8,7,6,7,2,0.007
-Vitros,8,8,8,7,7,8,2,0.007
+testName,Quarantine_Duration_Exit,Quarantine_Duration_Entry_Exit,Serial_Testing_Freq,False_Positive_Risk
+BD Veritor,8 (8–8),7 (7–8),2 (2–2),0.0389 (0.00859–0.152)
+BinaxNOW (FDA),8 (8–8),7 (7–7),2 (2–2),0.104 (0.0432–0.21)
+BinaxNOW (Community),8 (8–8),7 (7–7),2 (2–3),0.0474 (0.0265–0.0751)
+BinaxNOW,8 (8–8),7 (7–7),2 (2–2),0.0558 (0.0362–0.0833)
+CareStart (Anterior Nasal Swab - FDA),8 (8–8),7 (7–7),2 (2–2),0.00675 (0.00408–0.329)
+CareStart (Nasopharyngeal Swab),8 (8–8),6 (6–7),3 (2–3),0.0355 (0.00703–0.188)
+CareStart (Anterior Nasal Swab - External),8 (8–8),7 (7–7),2 (2–2),0.117 (0.0767–0.17)
+CareStart (Anterior Nasal Swab),8 (8–8),7 (7–7),2 (2–2),0.112 (0.0741–0.164)
+Celltrion DiaTrust,8 (8–8),6 (6–7),3 (2–3),0.0488 (0.0083–0.261)
+Clip COVID,8 (8–8),7 (6–7),3 (2–3),0.00451 (0.00343–0.145)
+Ellume,8 (8–8),6 (6–7),3 (2–3),0.141 (0.0625–0.356)
+Liaison (Anterior Nasal Swab),8 (8–8),7 (6–7),3 (2–3),0.00451 (0.00322–0.174)
+Liaison (Nasalpharyngeal Swab),8 (8–8),7 (6–7),2 (2–3),0.0575 (0.00868–0.222)
+LumiraDX (Anterior Nasal Swab),8 (8–8),6 (6–7),3 (2–3),0.155 (0.0766–0.374)
+LumiraDX (Nasopharyngeal Swabs),8 (8–8),6 (6–7),3 (2–3),0.108 (0.0469–0.28)
+Omnia,8 (8–8),7 (7–7),2 (2–2),0.00675 (0.00446–0.479)
+SCoV-2,8 (8–8),7 (7–7),2 (2–2),0.00675 (0.00404–0.0863)
+Simoa,8 (8–8),6 (6–7),3 (2–3),0.00451 (0.00322–0.393)
+Sofia (FDA),8 (8–8),7 (6–7),3 (2–3),0.00451 (0.0035–0.113)
+Sofia (CDC),8 (8–8),7 (7–8),2 (1–2),0.109 (0.0638–0.241)
+Sofia,8 (8–8),7 (7–7),2 (2–2),0.0944 (0.0587–0.145)
+Sofia 2 Flu+SARS,8 (8–8),7 (6–7),3 (2–3),0.00451 (0.00305–0.15)
+Status COVID+Flu,8 (8–8),7 (6–7),2 (2–3),0.00675 (0.0037–0.242)
+Vitros,8 (8–8),7 (7–8),2 (1–2),0.00675 (0.00406–0.284)

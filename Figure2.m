@@ -2,6 +2,7 @@
 % Plots the probability of PQT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
 % close all;
+clear;
 % Colur blind palete
 % CTest=[hex2rgb('#C6D4E1');hex2rgb('#0F2080');hex2rgb('#F5793A');hex2rgb('#A95AA1');hex2rgb('#85C0F9')];
 addpath([pwd '\Delta_Variant']);
@@ -25,7 +26,8 @@ R(:,1)=Probability_Onward((1-pA).*IDSLS+pA.*IDSLA,Risk);
 load('TestingonExit_RTPCR_24hrDelay_DeltaVOC_Uncertainty.mat')
 RTPCR_Un=Probability_Onward((1-pA).*IDSLSv+pA.*IDSLAv,Risk);
 
-fprintf('The probability of PQT for an RT-PCR test conducted on exit from a 7-day quarantine is %5.4f (%5.4f-%5.4f) \n',[R(q==7,1) prctile(RTPCR_Un(:,q==7),[2.5 97.5])]);   
+[~,LBPQT,UBPQT]=Credible_Interval_High_Density(R(q==7,1),RTPCR_Un(:,q==7),0.95,'continuous',[0 1]); 
+fprintf('The probability of PQT for an RT-PCR test conducted on exit from a 7-day quarantine is %5.4f (%5.4f-%5.4f) \n',[R(q==7,1) LBPQT UBPQT] );   
 
 load('TestingonExit_LumiraDX (Anterior Nasal Swab)_NoDelay_DeltaVOC.mat')
 R(:,2)=Probability_Onward((1-pA).*IDSLS+pA.*IDSLA,Risk);
@@ -88,10 +90,15 @@ title('Single rapid antigen test on exit','Fontsize',26);
 text(-1.89,0.585,'A','Fontsize',34,'FontWeight','bold');
 
 subplot('Position',[0.18114406779661./2,0.105,0.79885593220339./2,0.39]);
+LB_Ag=zeros(size(AgBetter));
+UB_Ag=zeros(size(AgBetter));
 
+for ii=1:length(LB_Ag)
+    [~,LB_Ag(ii),UB_Ag(ii)]=Credible_Interval_High_Density(AgBetter(ii),AgBetter_Un(:,ii),0.95,'discrete',[0 18]);    
+end
  
-   errorbar(q,AgBetter,AgBetter-prctile(AgBetter_Un,2.5)',prctile(AgBetter_Un,97.5)'-AgBetter,'k-o','MarkerSize',10,'MarkerEdgeColor','k','MarkerFaceColor','k','LineWidth',2);hold on;
-
+   %errorbar(q,AgBetter,AgBetter-prctile(AgBetter_Un,2.5)',prctile(AgBetter_Un,97.5)'-AgBetter,'-o','color',hex2rgb('#128277'),'MarkerSize',10,'MarkerEdgeColor',hex2rgb('#128277'),'MarkerFaceColor',hex2rgb('#128277'),'LineWidth',2);hold on;
+errorbar(q,AgBetter,AgBetter-LB_Ag,UB_Ag-AgBetter,'-o','color',hex2rgb('#128277'),'MarkerSize',10,'MarkerEdgeColor',hex2rgb('#128277'),'MarkerFaceColor',hex2rgb('#128277'),'LineWidth',2);hold on;
 box off;
 grid on;
 
@@ -186,7 +193,16 @@ legend boxoff;
 
 subplot('Position',[0.59,0.105,0.79885593220339./2,0.39]);
 
-errorbar(q,AgBetter,AgBetter-prctile(AgBetter_Un,2.5)',prctile(AgBetter_Un,97.5)'-AgBetter,'k-o','MarkerSize',10,'MarkerEdgeColor','k','MarkerFaceColor','k','LineWidth',2);hold on;
+LB_Ag=zeros(size(AgBetter));
+UB_Ag=zeros(size(AgBetter));
+
+for ii=1:length(LB_Ag)
+    [~,LB_Ag(ii),UB_Ag(ii)]=Credible_Interval_High_Density(AgBetter(ii),AgBetter_Un(:,ii),0.95,'discrete',[0 18]);    
+end
+    
+   %errorbar(q,AgBetter,AgBetter-prctile(AgBetter_Un,2.5)',prctile(AgBetter_Un,97.5)'-AgBetter,'-o','color',hex2rgb('#128277'),'MarkerSize',10,'MarkerEdgeColor',hex2rgb('#128277'),'MarkerFaceColor',hex2rgb('#128277'),'LineWidth',2);hold on;
+errorbar(q,AgBetter,AgBetter-LB_Ag,UB_Ag-AgBetter,'-o','color',hex2rgb('#128277'),'MarkerSize',10,'MarkerEdgeColor',hex2rgb('#128277'),'MarkerFaceColor',hex2rgb('#128277'),'LineWidth',2);hold on;
+
 
 box off;
 grid on;

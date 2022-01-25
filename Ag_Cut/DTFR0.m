@@ -8,7 +8,6 @@ parpool(16); % Parallel pool
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 [~,~,R0,ts,td] = BaselineParameters;
-AgCutoff=ts+10;
 
 SelfIsolate=1; %If sympmatics self-isolate
 R0S=R0;
@@ -18,6 +17,7 @@ RTotS=zeros(14,1);
 
 
 [betaRTPCR,~]=ParameterCOVIDTest([],1);
+AgCutoffPSO=10;
 
 testtype=cell(14,1);
 timetoff=cell(14,1);
@@ -32,37 +32,46 @@ end
 for delayTR=0:5
     parfor dT=1:14  
 
-        [RS,RA] = SerialTestingDelay(testtype{dT},[timetoff{dT}],R0S,R0A,ts,td,AgCutoff,SelfIsolate,NT(dT),dT,betaRTPCR,delayTR);
+        [RS,RA] = SerialTestingDelay(testtype{dT},AgCutoffPSO,[timetoff{dT}],R0S,R0A,ts,td,SelfIsolate,NT(dT),dT,betaRTPCR,delayTR);
 
         RTotS(dT)=sum(RS);
         RTotA(dT)=sum(RA);
     end
-    save([num2str(delayTR) '-day_Delay_Testing_Frequency_RTPCR_DeltaVOC_AgCutoff.mat']);
+    save([num2str(delayTR) '-day_Delay_Testing_Frequency_RTPCR_AgCutoff=' num2str(AgCutoffPSO) '.mat']);
 end
 
-betaRTPCRv=zeros(1000,3);
-for jj=1:1000
-    [betaRTPCRv(jj,:),~]=ParameterCOVIDTest([],0);
+
+
+
+[~,~,R0,ts,td] = BaselineParameters;
+
+SelfIsolate=1; %If sympmatics self-isolate
+R0S=R0;
+R0A=R0;
+RTotA=zeros(14,1);
+RTotS=zeros(14,1);
+
+
+[betaRTPCR,~]=ParameterCOVIDTest([],1);
+AgCutoffPSO=fminbnd(@(x)(integral(@(t)ViralShedding_Symptomatic(t,td),0,ts+x)-0.99).^2,0,10);
+
+testtype=cell(14,1);
+timetoff=cell(14,1);
+NT=zeros(14,1);
+for dT=1:14
+    timetoff{dT}=[0:dT:(floor(td))];
+    NT(dT)=length([timetoff{dT}]);
+    temp=cell(NT(dT),1);
+    testtype{dT}=temp;
 end
-save('RTPCR_Parameter_Uncertainty_Serial.mat','betaRTPCRv');
 
-RTotAv=zeros(14,1000);
-RTotSv=zeros(14,1000);
-
-RTotSt=zeros(1,1000);
-RTotAt=zeros(1,1000);
 for delayTR=0:5
-    for dT=1:14  
-        parfor ns=1:1000
-            [RS,RA] = SerialTestingDelay(testtype{dT},[timetoff{dT}],R0S,R0A,ts,td,AgCutoff,SelfIsolate,NT(dT),dT,betaRTPCRv(ns,:),delayTR);
+    parfor dT=1:14  
 
-            RTotSt(ns)=sum(RS);
-            RTotAt(ns)=sum(RA);
-        end
-        
-        RTotAv(dT,:)=RTotAt;
-        RTotSv(dT,:)=RTotSt;
+        [RS,RA] = SerialTestingDelay(testtype{dT},AgCutoffPSO,[timetoff{dT}],R0S,R0A,ts,td,SelfIsolate,NT(dT),dT,betaRTPCR,delayTR);
+
+        RTotS(dT)=sum(RS);
+        RTotA(dT)=sum(RA);
     end
-    
-    save([num2str(delayTR) '-day_Delay_Testing_Frequency_RTPCR_DeltaVOC_AgCutoff_Uncertainty.mat']);
+    save([num2str(delayTR) '-day_Delay_Testing_Frequency_RTPCR_AgCutoff=' num2str(AgCutoffPSO) '.mat']);
 end

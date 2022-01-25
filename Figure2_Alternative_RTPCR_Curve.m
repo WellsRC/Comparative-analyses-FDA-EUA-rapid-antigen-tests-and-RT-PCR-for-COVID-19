@@ -2,6 +2,7 @@
 % Plots the probability of PQT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
 close all;
+clear;
 % Colur blind palete
 % CTest=[hex2rgb('#C6D4E1');hex2rgb('#0F2080');hex2rgb('#F5793A');hex2rgb('#A95AA1');hex2rgb('#85C0F9')];
 addpath([pwd '\Alternative_Curve_Delta_Variant']);
@@ -88,7 +89,15 @@ text(-1.89,0.585,'A','Fontsize',34,'FontWeight','bold');
 subplot('Position',[0.18114406779661./2,0.105,0.79885593220339./2,0.39]);
 
  
-   errorbar(q,AgBetter,AgBetter-prctile(AgBetter_Un,2.5)',prctile(AgBetter_Un,97.5)'-AgBetter,'k-o','MarkerSize',10,'MarkerEdgeColor','k','MarkerFaceColor','k','LineWidth',2);hold on;
+LB_Ag=zeros(size(AgBetter));
+UB_Ag=zeros(size(AgBetter));
+
+for ii=1:length(LB_Ag)
+    [~,LB_Ag(ii),UB_Ag(ii)]=Credible_Interval_High_Density(AgBetter(ii),AgBetter_Un(:,ii),0.95,'discrete',[0 18]);    
+end
+    
+   %errorbar(q,AgBetter,AgBetter-prctile(AgBetter_Un,2.5)',prctile(AgBetter_Un,97.5)'-AgBetter,'-o','color',hex2rgb('#128277'),'MarkerSize',10,'MarkerEdgeColor',hex2rgb('#128277'),'MarkerFaceColor',hex2rgb('#128277'),'LineWidth',2);hold on;
+errorbar(q,AgBetter,AgBetter-LB_Ag,UB_Ag-AgBetter,'-o','color',hex2rgb('#128277'),'MarkerSize',10,'MarkerEdgeColor',hex2rgb('#128277'),'MarkerFaceColor',hex2rgb('#128277'),'LineWidth',2);hold on;
 
 box off;
 grid on;
@@ -184,7 +193,15 @@ legend boxoff;
 
 subplot('Position',[0.59,0.105,0.79885593220339./2,0.39]);
 
-errorbar(q,AgBetter,AgBetter-prctile(AgBetter_Un,2.5)',prctile(AgBetter_Un,97.5)'-AgBetter,'k-o','MarkerSize',10,'MarkerEdgeColor','k','MarkerFaceColor','k','LineWidth',2);hold on;
+LB_Ag=zeros(size(AgBetter));
+UB_Ag=zeros(size(AgBetter));
+
+for ii=1:length(LB_Ag)
+    [~,LB_Ag(ii),UB_Ag(ii)]=Credible_Interval_High_Density(AgBetter(ii),AgBetter_Un(:,ii),0.95,'discrete',[0 18]);    
+end
+    
+   %errorbar(q,AgBetter,AgBetter-prctile(AgBetter_Un,2.5)',prctile(AgBetter_Un,97.5)'-AgBetter,'-o','color',hex2rgb('#128277'),'MarkerSize',10,'MarkerEdgeColor',hex2rgb('#128277'),'MarkerFaceColor',hex2rgb('#128277'),'LineWidth',2);hold on;
+errorbar(q,AgBetter,AgBetter-LB_Ag,UB_Ag-AgBetter,'-o','color',hex2rgb('#128277'),'MarkerSize',10,'MarkerEdgeColor',hex2rgb('#128277'),'MarkerFaceColor',hex2rgb('#128277'),'LineWidth',2);hold on;
 
 box off;
 grid on;
@@ -205,4 +222,4 @@ text(-1.89,18.275,'D','Fontsize',34,'FontWeight','bold');
 rmpath([pwd '\Alternative_Curve_Delta_Variant']);
 rmpath([pwd '\Alternative_Curve_Delta_Variant\Results']);
 
-print(gcf,'Figure2','-dpng','-r300');
+print(gcf,'Figure2_Alternative_Curve','-dpng','-r300');

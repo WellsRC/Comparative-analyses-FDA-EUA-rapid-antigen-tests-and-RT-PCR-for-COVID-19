@@ -9,6 +9,8 @@ load('RAgTest_Name.mat','testName');
 NumTests=length(testName);
 for TestN=1:NumTests
     testNameP=testName{TestN};
+    
+    [NameP] = AdjustedNames_Plotting(testNameP);
     load('ColourMap_Quarantine_Scenario_pA_R0.mat','cc')
     load('ColourMap_Serial_Testing_Scenario_pA_R0.mat','ss')
     hh=0.75;
@@ -27,7 +29,7 @@ for TestN=1:NumTests
     set(gca,'LineWidth',2,'tickdir','out','YTick',[0.1:0.05:0.95],'XTick',[1:0.5:5],'Xminortick','on','Fontsize',24);
     ylabel('Proportion asymptomatic','Fontsize',26);
     xlabel('Basic reproduction number','Fontsize',26);
-    title(['Quarantine: ' testNameP ],'Fontsize',26);
+    title(['Quarantine: ' NameP ],'Fontsize',26);
     c=colorbar;
     c.Position=[0.437083332981152,0.15,0.011204481792717,0.576469098277617/hh];
     c.Ticks=[1:14];
@@ -50,7 +52,7 @@ for TestN=1:NumTests
     set(gca,'LineWidth',2,'tickdir','out','YTick',[0.1:0.05:0.95],'XTick',[1:0.5:5],'Xminortick','on','Fontsize',24);
     ylabel('Proportion asymptomatic','Fontsize',26);
     xlabel('Basic reproduction number','Fontsize',26);
-    title(['Serial testing: ' testNameP ],'Fontsize',26);
+    title(['Serial testing: ' NameP ],'Fontsize',26);
     c=colorbar;
         c.Position=[0.942335433821487,0.15,0.011204481792717,0.576368866986917/hh];
         c.Ticks=[0:14];

@@ -1,6 +1,6 @@
-function [ProbFalsePosSerial] = CalcFalsePositive(testName,DurT,FreqT)
+function [ProbFalsePosSerial] = CalcFalsePositive(testName,DurT,FreqT,MLE)
 
-PFP=Test_Specificity(testName,1); % Obtain the specificity
+PFP=Test_Specificity(testName,MLE); % Obtain the specificity
 
 ProbFalsePosSerial=0;
 temp=[1:FreqT:(FreqT*(DurT-1)+1)];

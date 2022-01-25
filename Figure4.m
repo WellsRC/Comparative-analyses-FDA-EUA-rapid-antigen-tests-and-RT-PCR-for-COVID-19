@@ -52,15 +52,15 @@ DurT=14; % Duration in which the testing is being conducted
 NumTestSerial=ceil(DurT./f); % Number of tests conducted over the time period
 
 for jj=1:length(f)
-    [ProbFP(jj,1)]= CalcFalsePositive('RTPCR',DurT,f(jj));
-    [ProbFP(jj,2)]=CalcFalsePositive('LumiraDX (Anterior Nasal Swab)',DurT,f(jj));
-    [ProbFP(jj,3)]=CalcFalsePositive('Sofia (FDA)',DurT,f(jj));
-    [ProbFP(jj,4)]=CalcFalsePositive('BinaxNOW',DurT,f(jj));
-    [ProbFP(jj,5)]=CalcFalsePositive('BD Veritor',DurT,f(jj));
-    [ProbFP(jj,6)]=CalcFalsePositive('CareStart (Anterior Nasal Swab - FDA)',DurT,f(jj));
+    [ProbFP(jj,1)]= CalcFalsePositive('RTPCR',DurT,f(jj),1);
+    [ProbFP(jj,2)]=CalcFalsePositive('LumiraDX (Anterior Nasal Swab)',DurT,f(jj),1);
+    [ProbFP(jj,3)]=CalcFalsePositive('Sofia (FDA)',DurT,f(jj),1);
+    [ProbFP(jj,4)]=CalcFalsePositive('BinaxNOW',DurT,f(jj),1);
+    [ProbFP(jj,5)]=CalcFalsePositive('BD Veritor',DurT,f(jj),1);
+    [ProbFP(jj,6)]=CalcFalsePositive('CareStart (Anterior Nasal Swab - FDA)',DurT,f(jj),1);
 
     for dd=1:5
-        [ProbFP(jj,dd+6)]=CalcFalsePositive('RTPCR',DurT,f(jj));
+        [ProbFP(jj,dd+6)]=CalcFalsePositive('RTPCR',DurT,f(jj),1);
     end
 end
 
@@ -99,7 +99,7 @@ xxtick=10.^[-4:0];
 semilogx(10.^linspace(-6,0,1001),ones(1001,1),'k-.','LineWidth',1.5);
 grid on;
 ylabel({'Effective reproduction number'},'Fontsize',28);
-xlabel('Probability of at least one false-postive over two weeks','Fontsize',28);
+xlabel('Probability of at least one false-positive over two weeks','Fontsize',28);
 box off;
 legend({'RT-PCR (No delay)','LumiraDx','Sofia','BinaxNOW','BD Veritor','CareStart','RT-PCR 1-day delay','RT-PCR 2-day delay','RT-PCR 3-day delay','RT-PCR 4-day delay','RT-PCR 5-day delay'},'Fontsize',22,'NumColumns',4,'Location','NorthEast');
 legend boxoff;
