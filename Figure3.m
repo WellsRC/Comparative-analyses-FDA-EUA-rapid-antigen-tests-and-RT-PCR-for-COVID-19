@@ -291,7 +291,7 @@ end
 
 set(gca,'LineWidth',2,'Tickdir','out','Fontsize',20,'XTick',[1:14],'Xlim',[1 14],'ylim',[0 100],'Ytick',[0:10:100],'Yminortick','on','Xminortick','off','xdir', 'reverse' );
 xlabel('Duration of quarantine (days)','Fontsize',26);
-ylabel({'Reduction of basic','reproductive number'},'Fontsize',26);
+ylabel({'Reduction of effective','reproduction number'},'Fontsize',26);
 text(17.35,18.315*100/18,0,'C','Fontsize',34,'FontWeight','bold');
 ytickformat('percentage')
 xlabel('Days between tests','Fontsize',24);
