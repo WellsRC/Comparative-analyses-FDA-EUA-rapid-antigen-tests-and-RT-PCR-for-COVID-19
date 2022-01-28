@@ -18,10 +18,9 @@ parfor ii=0:(NT-2)
 end
 
 dayT=[timetoff];
-if(dT.*NT+delayTR<=td)
-    RS(end)=integral2(@(u,tx)InfectiousnessfromInfectionTestingFreq(tx,u,dayT,testtype,AgCutoffPSO,R0S,R0A,0,ts,td,SelfIsolate,betaPCR),0,dT,@(u)(u+dT.*(NT-1)+delayTR),td)./dT;
-    RA(end)=integral2(@(u,tx)InfectiousnessfromInfectionTestingFreq(tx,u,dayT,testtype,AgCutoffPSO,R0S,R0A,1,ts,td,0,betaPCR),0,dT,@(u)(u+dT.*(NT-1)+delayTR),td)./dT;
-end
+RS(end)=integral2(@(u,tx)InfectiousnessfromInfectionTestingFreq(tx,u,dayT,testtype,AgCutoffPSO,R0S,R0A,0,ts,td,SelfIsolate,betaPCR),0,dT,@(u)(u+dT.*(NT-1)+delayTR),td)./dT;
+RA(end)=integral2(@(u,tx)InfectiousnessfromInfectionTestingFreq(tx,u,dayT,testtype,AgCutoffPSO,R0S,R0A,1,ts,td,0,betaPCR),0,dT,@(u)(u+dT.*(NT-1)+delayTR),td)./dT;
+
         
 end
 

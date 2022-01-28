@@ -2,7 +2,7 @@
 % Frequency testing: RTPCR
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-parpool(16); % Parallel pool
+% parpool(16); % Parallel pool
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % NEW Sensitivity curve
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -39,11 +39,16 @@ for delayTR=0:5
     save([num2str(delayTR) '-day_Delay_Testing_Frequency_RTPCR_DeltaVOC.mat']);
 end
 
-betaRTPCRv=zeros(1000,3);
-for jj=1:1000
-    [betaRTPCRv(jj,:),~]=ParameterCOVIDTest([],0);
-end
-save('RTPCR_Parameter_Uncertainty_Serial.mat','betaRTPCRv');
+% betaRTPCRv=zeros(1000,3);
+% for jj=1:1000
+%     [betaRTPCRv(jj,:),~]=ParameterCOVIDTest([],0);
+% end
+% save('RTPCR_Parameter_Uncertainty_Serial.mat','betaRTPCRv');
+
+
+% LOADING AS THERE WAS AN ERROR IN THE SERIAL TESTING DELAY SCRIPT: THUS,
+% WILL USE THE SAME SAMPLES AS BEFORE AND DO NOT HAVE TO RUN RA TESTS AGAIN
+load('RTPCR_Parameter_Uncertainty_Serial.mat','betaRTPCRv');
 
 RTotAv=zeros(14,1000);
 RTotSv=zeros(14,1000);
