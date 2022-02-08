@@ -55,7 +55,7 @@ for jj=1:length(f)
     [ProbFP(jj,1)]= CalcFalsePositive('RTPCR',DurT,f(jj),1);
     [ProbFP(jj,2)]=CalcFalsePositive('LumiraDX (Anterior Nasal Swab)',DurT,f(jj),1);
     [ProbFP(jj,3)]=CalcFalsePositive('Sofia (FDA)',DurT,f(jj),1);
-    [ProbFP(jj,4)]=CalcFalsePositive('BinaxNOW',DurT,f(jj),1);
+    [ProbFP(jj,4)]=CalcFalsePositive('BinaxNOW (FDA)',DurT,f(jj),1);
     [ProbFP(jj,5)]=CalcFalsePositive('BD Veritor',DurT,f(jj),1);
     [ProbFP(jj,6)]=CalcFalsePositive('CareStart (Anterior Nasal Swab - FDA)',DurT,f(jj),1);
 

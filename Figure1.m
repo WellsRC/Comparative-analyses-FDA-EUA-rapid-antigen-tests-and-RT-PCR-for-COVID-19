@@ -53,3 +53,4 @@ legend boxoff;
 rmpath([pwd '\Delta_Variant']);
 addpath([pwd '\Delta_Variant\Results']);
 print(gcf,['Figure1.png'],'-dpng','-r600');
+print(gcf,['Figure1.tiff'],'-dtiff','-r600');

@@ -9,12 +9,29 @@ if(strcmp(datatype,'continuous'))
 
         lb=bnd;
         ub=icdf(pd,min(cdf(pd,bnd)+alphaZ,1));
+        if(ub<mle)
+            [bnd]=fminbnd(@(bp)((cdf(pd,icdf(pd,max(data)))-cdf(pd,bp))-alphaZ).^2,databnd(1),mle,options);
+            
+            lb=bnd;
+            ub=max(data);
+        end
     elseif (mle==databnd(1))
+        
+        options = optimset('TolX',10^(-16));
+        
+        
+        [bnd]=fminbnd(@(bp)((cdf(pd,icdf(pd,bp))-cdf(pd,mle))-alphaZ).^2,mle,databnd(2),options);
+
         lb=mle;
-        ub=prctile(data,95);
+        ub=bnd;
     else        
+        options = optimset('TolX',10^(-16));
+        
+        
+        [bnd]=fminbnd(@(bp)((cdf(pd,icdf(pd,mle))-cdf(pd,bp))-alphaZ).^2,databnd(1),mle,options);
+        
         ub=mle;
-        lb=prctile(data,5);
+        lb=bnd;
     end
 elseif(strcmp(datatype,'discrete'))
     xc=[databnd(1):databnd(2)];

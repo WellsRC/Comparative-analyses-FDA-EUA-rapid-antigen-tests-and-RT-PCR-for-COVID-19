@@ -94,9 +94,14 @@ w=[ts ts-3 ts-4]./ts;
 pAw=w.*pA+(1-w);
 PPA=pAw.*PPARAgA+(1-pAw).*PPARAgS;
 PPAU=repmat(pAw,1000,1).*PPARAgA_UN+(1-repmat(pAw,1000,1)).*PPARAgS_UN;
-
+LBPPA=zeros(3,1);
+UBPPA=zeros(3,1);
 for ii=1:length(test)
-    fprintf('Test day %d the PPA is %3.1f (%3.1f - %3.1f) \n', [test(ii) 100.*PPA(ii) 100.*prctile(PPAU(:,ii),[2.5 97.5])]);
+    
+    [~,LBPPA(ii),UBPPA(ii)]=Credible_Interval_High_Density(PPA(ii),PPAU(:,ii),0.95,'continuous',[0 1]);
+    fprintf('Test day %d the PPA is %3.1f (%3.1f - %3.1f) \n', [test(ii) 100.*PPA(ii) 100.*LBPPA(ii) 100.*UBPPA(ii)]);
 end
+
+fprintf('Probability of zero false-psotvies on test day 4 the PPA is %4.3f (%4.3f - %4.3f) \n', [(1-PPA(ii))^N(3) (1-UBPPA(ii))^N(3) (1-LBPPA(ii))^N(3) ]);
 rmpath([pwd '\Non_Delta']);
 rmpath([pwd '\Non_Delta\Results']);

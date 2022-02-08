@@ -224,3 +224,4 @@ rmpath([pwd '\Delta_Variant']);
 rmpath([pwd '\Delta_Variant\Results']);
 
 print(gcf,'Figure2','-dpng','-r300');
+print(gcf,'Figure2.tiff','-dtiff','-r600');
