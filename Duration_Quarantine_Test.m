@@ -2,7 +2,7 @@ function [pA,R0v,QD] = Duration_Quarantine_Test(testName)
 
 load(['TestingonExit_' testName '_NoDelay_DeltaVOC.mat'],'IDSLA','IDSLS','R0','q')
 [pAb,~,~,~,~] = BaselineParameters;
-R0v=linspace(1.2,5,101);
+R0v=linspace(1.05,5,101);
 pA=[0.1:0.001:0.95];
 
 QD=zeros(length(pA),length(R0v));
