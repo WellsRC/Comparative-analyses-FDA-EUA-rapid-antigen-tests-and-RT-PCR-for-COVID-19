@@ -124,10 +124,10 @@ for ii=1:6
    b(ii).FaceColor=CTest(ii,:); 
    errorbar(b(ii).XEndPoints,b(ii).YEndPoints,b(ii).YEndPoints'-LB_RTPCRTest(:,ii),UB_RTPCRTest(:,ii)-b(ii).YEndPoints','.','Markersize',10^(-16),'LineWidth',2,'color',[0.75 0.75 0.75]);
    if(ii==3)
-       testFreq=[b(ii).YEndPoints' LB_RTPCRTest UB_RTPCRTest];
+       testFreq=[b(ii).YEndPoints' LB_RTPCRTest(:,ii) UB_RTPCRTest(:,ii)];
        fprintf('Bounds for a delay of 2 days: %3.2f (%3.2f - %3.2f) \n',testFreq(1,:))
    elseif(ii==2)
-       testFreq=[b(ii).YEndPoints' LB_RTPCRTest UB_RTPCRTest];
+       testFreq=[b(ii).YEndPoints' LB_RTPCRTest(:,ii) UB_RTPCRTest(:,ii)];
        fprintf('Bounds for a delay of 24 hrs: %3.2f (%3.2f - %3.2f) \n',testFreq(1,:))       
    elseif(ii==1)
        D=zeros(1000,1);
@@ -138,7 +138,7 @@ for ii=1:6
        [~,LB_D,UB_D]=Credible_Interval_High_Density(MLED,D(:),0.95,'discrete',[1 14]);    
        fprintf('Bounds for time between tests no-delay: %d (%d - %d) \n',[MLED LB_D UB_D]);
        
-       testFreq=[b(ii).YEndPoints' LB_RTPCRTest UB_RTPCRTest];
+       testFreq=[b(ii).YEndPoints' LB_RTPCRTest(:,ii) UB_RTPCRTest(:,ii)];
        fprintf('Bounds for NO delay and testing every three days: %3.2f (%3.2f - %3.2f) \n',testFreq(3,:))  
    end
 end
