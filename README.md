@@ -5,7 +5,7 @@ Chad R. Wells, Abhishek Pandey, Seyed M. Moghadas, Burton H. Singer, Gary Kriege
 Copyright (C) <2022>, Chad R. Wells et. al. All rights reserved. Released under the GNU General Public License (GPL)
 
 This repository contains codes and data used to simulate and analyze COVID- testing strategies in the scenarios of 
-1. Quarnatine
+1. Quarantine
 2. Serial testing
 
 The model code is written in MATLAB and results are saved as MATLAB data files (extension .mat), with plots also being constructed in MATLAB. 
