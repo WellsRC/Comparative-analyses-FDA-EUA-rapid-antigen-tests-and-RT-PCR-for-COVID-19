@@ -24,15 +24,24 @@ Figure1 generates Figure 1 in the main text. Corresponding figures and analysis 
 To generate the Figures and output of the calculations, select a script from Figures section to run in MATLAB and enter the name in the command line. All mat file are available to generate figures and conduct the calculations. To run analysis on a different set of parameters, adjust the parameters in the script and enter the name of the script in the command line to run. 
 
 There is a separate folder for each of the different scenarios considered in the manuscript:
+
 Baseline: Delta_Variant
+
 5.72 day incubation period: Non_Delta
+
 Alternative RT-PCR curve: Alternative_Curve_Delta_Variant
+
 Diagnostic sensitivty cutoff for antigen test: Ag_Cut
+
 
 In these folders there are scripts to run the analysis for quarantine and serial testing
 
 DTX0 - RT-PCR testing on exit from quarantine with a 24-h delay
+
 DTFR0 - RT-PCR serial testing with a 24-h delay
+
 TEX1 - Rapid antigen testing on entry and exit from quarantine
+
 TX1 - Rapid antigen testing on from quarantine
+
 TFR1 - Rapid antigen serial testing
