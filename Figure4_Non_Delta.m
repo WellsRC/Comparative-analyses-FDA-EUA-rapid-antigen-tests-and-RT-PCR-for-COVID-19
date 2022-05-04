@@ -65,7 +65,7 @@ for jj=1:length(f)
 end
 
 
-CTest=[hex2rgb('#231B12');hex2rgb('#375E97');hex2rgb('#486824');hex2rgb('#F9A603');hex2rgb('#CF3721');hex2rgb('#810f7c'); hex2rgb('525252');hex2rgb('737373');hex2rgb('969696');hex2rgb('bdbdbd');hex2rgb('d9d9d9')]; 
+CTest=[hex2rgb('#231B12');hex2rgb('#bfd3e6');hex2rgb('#41ae76');hex2rgb('#F9A603');hex2rgb('#993404');hex2rgb('#88419d'); hex2rgb('525252');hex2rgb('737373');hex2rgb('969696');hex2rgb('bdbdbd');hex2rgb('d9d9d9')]; 
 hold on;
 pbt=plot(ProbFP(1,1),R(1,1),ProbFP(1,2),R(1,2),ProbFP(1,3),R(1,3),ProbFP(1,4),R(1,4),ProbFP(1,5),R(1,5),ProbFP(1,6),R(1,6),ProbFP(1,7),R(1,7),ProbFP(1,8),R(1,8),ProbFP(1,9),R(1,9),ProbFP(1,10),R(1,10),ProbFP(1,11),R(1,11),'LineWidth',2);
 MF={'p','s','d','^','o','h','p','p','p','p','p'};

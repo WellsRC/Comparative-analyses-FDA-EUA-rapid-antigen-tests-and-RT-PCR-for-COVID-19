@@ -29,7 +29,7 @@ for ii=1:length(testNamev)
     plot(ts.*ones(101,1),linspace(0,1,101),'-.','LineWidth',1.5,'color',[0.75 0.75 0.75]);
     set(gca,'LineWidth',2,'tickdir','out','Fontsize',18,'XTick',[0:5:40],'xlim',[0 40],'XMinorTick','on','Yminortick','on','YTick',[0:0.1:1],'Ylim',[0 1]);
     ylabel({'Diagnostic sensitivity'},'Fontsize',18);
-    text(-7.140724946695094,0.988,'A','Fontsize',30,'FontWeight','bold');
+    text(-7.140724946695094,0.988,'a','Fontsize',30,'FontWeight','bold');
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % PPA
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -62,7 +62,7 @@ for ii=1:length(testNamev)
     grid on;
 
     legend({'RT-PCR: Exit',[NameP ': Exit'],[NameP ': Entry & Exit']},'Fontsize',16);
-    text(-3.605,0.54352544978482,'B','Fontsize',30,'FontWeight','bold');
+    text(-3.605,0.54352544978482,'b','Fontsize',30,'FontWeight','bold');
     rmpath([pwd '\Delta_Variant']);
     rmpath([pwd '\Delta_Variant\Results']);
 
@@ -85,7 +85,7 @@ for ii=1:length(testNamev)
     ylabel({'Diagnostic sensitivity'},'Fontsize',18);
 
     legend([p1 p2 p3 p4],{'RT-PCR: MLE','RT-PCR: 95% CrI',[NameP ': MLE'],[NameP ': 95% CrI']},'Fontsize',16);
-    text(-7.140724946695094,0.988,'C','Fontsize',30,'FontWeight','bold');
+    text(-7.140724946695094,0.988,'c','Fontsize',30,'FontWeight','bold');
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
     % Post-quarantine transmission
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
@@ -100,7 +100,7 @@ for ii=1:length(testNamev)
     box off;
     grid on;    
 
-    text(-3.605,0.54352544978482,'D','Fontsize',30,'FontWeight','bold');
+    text(-3.605,0.54352544978482,'d','Fontsize',30,'FontWeight','bold');
     rmpath([pwd '\Alternative_Curve_Delta_Variant']);
     rmpath([pwd '\Alternative_Curve_Delta_Variant\Results']);
 
@@ -122,7 +122,7 @@ for ii=1:length(testNamev)
     set(gca,'LineWidth',2,'tickdir','out','Fontsize',18,'XTick',[0:5:40],'xlim',[0 40],'XMinorTick','on','Yminortick','on','YTick',[0:0.1:1],'Ylim',[0 1]);
     ylabel({'Diagnostic sensitivity'},'Fontsize',18);
     xlabel({'Days post-infection'},'Fontsize',18);
-    text(-7.140724946695094,0.988,'E','Fontsize',30,'FontWeight','bold');
+    text(-7.140724946695094,0.988,'e','Fontsize',30,'FontWeight','bold');
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
     % Post-quarantine transmission
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
@@ -138,7 +138,7 @@ for ii=1:length(testNamev)
     box off;
     grid on;
 
-    text(-3.605,0.54352544978482,'F','Fontsize',30,'FontWeight','bold');
+    text(-3.605,0.54352544978482,'f','Fontsize',30,'FontWeight','bold');
     
     rmpath([pwd '\Non_Delta']);
     rmpath([pwd '\Non_Delta\Results']);

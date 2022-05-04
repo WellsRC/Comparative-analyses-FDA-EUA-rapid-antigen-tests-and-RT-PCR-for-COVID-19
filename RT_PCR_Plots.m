@@ -41,7 +41,7 @@ set(gca,'LineWidth',2,'tickdir','out','XTick',[0:5:50],'Xminortick','on','YTick'
 ylabel('Diagnostic sensitivity','Fontsize',22);
 xlabel('Days post-infection','Fontsize',22);
 
-text(-6.30407911001236,0.995,'A','Fontsize',32,'FontWeight','bold');
+text(-6.30407911001236,0.995,'a','Fontsize',32,'FontWeight','bold');
 
 rmpath([pwd '\Delta_Variant']);
 rmpath([pwd '\Delta_Variant\Results']);
@@ -87,7 +87,7 @@ set(gca,'LineWidth',2,'tickdir','out','XTick',[0:5:50],'Xminortick','on','YTick'
 ylabel('Diagnostic sensitivity','Fontsize',22);
 xlabel('Days post-infection','Fontsize',22);
 
-text(-6.30407911001236,0.995,'C','Fontsize',32,'FontWeight','bold');
+text(-6.30407911001236,0.995,'c','Fontsize',32,'FontWeight','bold');
 
 rmpath([pwd '\Non_Delta']);
 rmpath([pwd '\Non_Delta\Results']);
@@ -132,7 +132,7 @@ set(gca,'LineWidth',2,'tickdir','out','XTick',[0:5:50],'Xminortick','on','YTick'
 ylabel('Diagnostic sensitivity','Fontsize',22);
 xlabel('Days post-infection','Fontsize',22);
 
-text(-6.30407911001236,0.995,'B','Fontsize',32,'FontWeight','bold');
+text(-6.30407911001236,0.995,'b','Fontsize',32,'FontWeight','bold');
 
 rmpath([pwd '\Alternative_Curve_Delta_Variant']);
 rmpath([pwd '\Alternative_Curve_Delta_Variant\Results']);
@@ -151,5 +151,5 @@ set(gca,'LineWidth',2,'tickdir','out','XTick',[-5:5:50],'Xminortick','on','YTick
 ylabel('Diagnostic sensitivity','Fontsize',22);
 xlabel('Days since symptom onset','Fontsize',22);
 
-text(-11.2533992,0.995,'D','Fontsize',32,'FontWeight','bold');
+text(-11.2533992,0.995,'d','Fontsize',32,'FontWeight','bold');
 print(gcf,['RT-PCR_Curves.png'],'-dpng','-r600');

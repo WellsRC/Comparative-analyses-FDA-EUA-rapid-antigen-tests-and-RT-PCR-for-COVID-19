@@ -9,7 +9,7 @@ addpath([pwd '\Delta_Variant']);
 addpath([pwd '\Delta_Variant\Results']);
 
 [pA,~,R0,ts,td] = BaselineParameters;
-CTest=[hex2rgb('#231B12');hex2rgb('#375E97');hex2rgb('#486824');hex2rgb('#F9A603');hex2rgb('#CF3721');hex2rgb('#810f7c')];
+CTest=[hex2rgb('#231B12');hex2rgb('#bfd3e6');hex2rgb('#41ae76');hex2rgb('#F9A603');hex2rgb('#993404');hex2rgb('#88419d')];
 Freq=[1:14];
 
 RNoTest=integral(@(t)InfectiousnessfromInfection(t,R0,R0,pA,ts,td,1),0,inf);
@@ -61,7 +61,7 @@ plot(linspace(0.5,14.5,1001),ones(1001,1),'-.','color',[0.75 0.75 0.75],'LineWid
 plot(linspace(0.5,14.5,1001),RNoTest.*ones(1001,1),'-','color',[0.75 0.75 0.75],'LineWidth',2)
 box off;
 % xlabel('Days between tests','Fontsize',24);
-text(18.07,1.282./1.3*3.2,'A','Fontsize',34,'FontWeight','bold');
+text(18.07,1.282./1.3*3.2,'a','Fontsize',34,'FontWeight','bold');
 xlim([0.5 14.5]);
 
 LB_AGTest=zeros(size(R));
@@ -115,7 +115,7 @@ plot(linspace(0.5,14.5,1001),ones(1001,1),'-.','color',[0.75 0.75 0.75],'LineWid
 plot(linspace(0.5,14.5,1001),RNoTest.*ones(1001,1),'-','color',[0.75 0.75 0.75],'LineWidth',2)
 box off;
 
-text(18.07,1.282/1.3*3.2,'B','Fontsize',34,'FontWeight','bold');
+text(18.07,1.282/1.3*3.2,'b','Fontsize',34,'FontWeight','bold');
 xlim([0.5 14.5]);
 fprintf('====================================== \n');
 fprintf('RT-PCR \n');
@@ -251,7 +251,7 @@ set(gca,'LineWidth',2,'Tickdir','out','Fontsize',20,'XTick',[1:14],'Xlim',[1 14]
 xlabel('Duration of quarantine (days)','Fontsize',26);
 ylim([0 NumTest]);
 ylabel({'Fraction of antigen','tests with {\it R_E} < 1'},'Fontsize',26);
-text(17.35,18.315,'D','Fontsize',34,'FontWeight','bold');
+text(17.35,18.315,'d','Fontsize',34,'FontWeight','bold');
 
 xlabel('Days between tests','Fontsize',24);
 
@@ -292,7 +292,7 @@ end
 set(gca,'LineWidth',2,'Tickdir','out','Fontsize',20,'XTick',[1:14],'Xlim',[1 14],'ylim',[0 100],'Ytick',[0:10:100],'Yminortick','on','Xminortick','off','xdir', 'reverse' );
 xlabel('Duration of quarantine (days)','Fontsize',26);
 ylabel({'Reduction of effective','reproduction number'},'Fontsize',26);
-text(17.35,18.315*100/18,0,'C','Fontsize',34,'FontWeight','bold');
+text(17.35,18.315*100/18,0,'c','Fontsize',34,'FontWeight','bold');
 ytickformat('percentage')
 xlabel('Days between tests','Fontsize',24);
 

@@ -244,7 +244,7 @@ ylabel('Density','Fontsize',24)
 box off;
 xlim([0 20])
 ylim([0 0.2]);
-text(-2.755,0.2,'A','Fontsize',32,'FontWeight','bold');
+text(-2.755,0.2,'a','Fontsize',32,'FontWeight','bold');
 set(gca,'LineWidth',2,'tickdir','out','Fontsize',22,'YTick',[0:0.05:0.2],'YMinortick','on','XTick',[0:5:20],'Xminortick','on');
 %%%% 
 % Determine the credible interval
@@ -274,7 +274,7 @@ ylabel('Density','Fontsize',24)
 
 set(gca,'LineWidth',2,'tickdir','out','Fontsize',22,'YTick',[0:0.25:2.5],'YMinortick','on','XTick',[0:0.1:1],'Xminortick','on');
 ylim([0 2.5]);
-text(-0.1457,2.5,'B','Fontsize',32,'FontWeight','bold');
+text(-0.1457,2.5,'b','Fontsize',32,'FontWeight','bold');
 box off;
 %%%%%%%%%%%%%%%%%%%%%%
 % Determine credible interval

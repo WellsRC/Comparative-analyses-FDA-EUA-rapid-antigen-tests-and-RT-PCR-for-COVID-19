@@ -13,7 +13,7 @@ addpath([pwd '\Non_Delta\Results']);
 %% Baseline
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
 
-CTest=[hex2rgb('#231B12');hex2rgb('#375E97');hex2rgb('#486824');hex2rgb('#F9A603');hex2rgb('#CF3721');hex2rgb('#810f7c')];
+CTest=[hex2rgb('#231B12');hex2rgb('#bfd3e6');hex2rgb('#41ae76');hex2rgb('#F9A603');hex2rgb('#993404');hex2rgb('#88419d')];
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 % Exit 
@@ -84,7 +84,7 @@ set(gca,'LineWidth',2,'Tickdir','out','Fontsize',20,'XTick',[1:14],'Xlim',[1 14]
 % xlabel('Duration of quarantine (days)','Fontsize',26);
 ylabel({'Probability of','post-quarantine transmission'},'Fontsize',26);
 title('Single rapid antigen test on exit','Fontsize',26);
-text(-1.89,0.585,'A','Fontsize',34,'FontWeight','bold');
+text(-1.89,0.585,'a','Fontsize',34,'FontWeight','bold');
 
 subplot('Position',[0.18114406779661./2,0.105,0.79885593220339./2,0.39]);
 
@@ -114,7 +114,7 @@ set(gca,'LineWidth',2,'Tickdir','out','Fontsize',20,'XTick',[1:14],'Xlim',[1 14]
 xlabel('Duration of quarantine (days)','Fontsize',26);
 ylim([0 NumTest]);
 ylabel({'Fraction of antigen tests','outperforming RT-PCR'},'Fontsize',24);
-text(-1.89,18.275,'C','Fontsize',34,'FontWeight','bold');
+text(-1.89,18.275,'c','Fontsize',34,'FontWeight','bold');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 % Entry and exit
@@ -184,7 +184,7 @@ set(gca,'LineWidth',2,'Tickdir','out','Fontsize',20,'XTick',[1:14],'Xlim',[1 14]
 
 ylabel({'Probability of','post-quarantine transmission'},'Fontsize',26);
 title('Single rapid antigen test on both entry and exit','Fontsize',26);
-text(-1.89,0.585,'B','Fontsize',34,'FontWeight','bold');
+text(-1.89,0.585,'b','Fontsize',34,'FontWeight','bold');
 
 legend({'RT-PCR','LumiraDx','Sofia','BinaxNOW','BD Veritor','CareStart'},'Fontsize',18,'NumColumns',3,'Location','NorthEast');
 legend boxoff;
@@ -216,7 +216,7 @@ set(gca,'LineWidth',2,'Tickdir','out','Fontsize',20,'XTick',[1:14],'Xlim',[1 14]
 xlabel('Duration of quarantine (days)','Fontsize',26);
 ylim([0 NumTest]);
 ylabel({'Fraction of antigen tests','outperforming RT-PCR'},'Fontsize',24);
-text(-1.89,18.275,'D','Fontsize',34,'FontWeight','bold');
+text(-1.89,18.275,'d','Fontsize',34,'FontWeight','bold');
 rmpath([pwd '\Non_Delta']);
 rmpath([pwd '\Non_Delta\Results']);
 

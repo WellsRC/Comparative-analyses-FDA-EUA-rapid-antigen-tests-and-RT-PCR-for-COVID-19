@@ -37,7 +37,7 @@ for TestN=1:NumTests
     c.Label.FontSize=26;
     c.Label.Rotation=270;
     c.Label.Position=[4.972698438735235,7.500006675720215,0];
-    text(0.475375375375376,1.01016333938294,0,'A','Fontsize',32,'FontWeight','bold');
+    text(0.475375375375376,1.01016333938294,0,'a','Fontsize',32,'FontWeight','bold');
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Serial testing
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -61,7 +61,7 @@ for TestN=1:NumTests
     c.Label.Rotation=270;
     c.Label.Position=[4.972698438735235,7.500006675720215,0];
     c.TickLabels{1}='R > 1';
-    text(0.475375375375376,1.01016333938294,0,'B','Fontsize',32,'FontWeight','bold');
+    text(0.475375375375376,1.01016333938294,0,'b','Fontsize',32,'FontWeight','bold');
     print(gcf,['pA_R0_' testNameP '.png'],'-dpng','-r600');
 end
 

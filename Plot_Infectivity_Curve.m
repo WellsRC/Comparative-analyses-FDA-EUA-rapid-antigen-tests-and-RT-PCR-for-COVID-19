@@ -33,7 +33,7 @@ ylabel('Infectivity','Fontsize',18);
 ylim([0 0.8]);
 xlim([0 16]);
 set(gca,'LineWidth',2,'tickdir','out','Fontsize',16,'XTick',[0:25],'XMinorTick','on','Yminortick','on','YTick',[0:0.1:0.9]);
-text(-1.779975278121137,0.8,'A','Fontsize',32,'Fontweight','bold');
+text(-1.779975278121137,0.8,'a','Fontsize',32,'Fontweight','bold');
 
 rmpath([pwd '\Delta_Variant']);
 rmpath([pwd '\Delta_Variant\Results']);
@@ -71,7 +71,7 @@ ylabel('Infectivity','Fontsize',18);
 ylim([0 0.8]);
 xlim([0 16]);
 set(gca,'LineWidth',2,'tickdir','out','Fontsize',16,'XTick',[0:25],'XMinorTick','on','Yminortick','on','YTick',[0:0.1:0.9]);
-text(-1.779975278121137,0.8,'B','Fontsize',32,'Fontweight','bold');
+text(-1.779975278121137,0.8,'b','Fontsize',32,'Fontweight','bold');
 
 rmpath([pwd '\Non_Delta']);
 rmpath([pwd '\Non_Delta\Results']);

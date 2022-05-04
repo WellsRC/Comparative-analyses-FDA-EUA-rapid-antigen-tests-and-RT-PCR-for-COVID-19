@@ -88,7 +88,7 @@ for fr=4:-1:1
         title(['Testing every ' num2str(fr) ' days'],'Fontsize',28);
     end
     tfr=1+(4-fr);
-    text(-2.699383553973718,1.489425287356321./1.4.*1.8,char(64+tfr),'Fontsize',34,'FontWeight','bold');
+    text(-2.699383553973718,1.489425287356321./1.4.*1.8,char(96+tfr),'Fontsize',34,'FontWeight','bold');
     if(rem(fr,2)==1)
         print(gcf,['Alltests_Testing_Frequency=' num2str(fr) '_Baseline.png'],'-dpng','-r600');
     end

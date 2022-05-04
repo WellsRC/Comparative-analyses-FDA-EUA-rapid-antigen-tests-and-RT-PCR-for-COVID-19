@@ -6,7 +6,7 @@ close all;
 addpath([pwd '\Non_Delta']);
 addpath([pwd '\Non_Delta\Results']);
 [pA,~,~,ts,~] = BaselineParameters;
-CTest=[hex2rgb('#231B12');hex2rgb('#375E97');hex2rgb('#486824');hex2rgb('#F9A603');hex2rgb('#CF3721');hex2rgb('#810f7c')];
+CTest=[hex2rgb('#231B12');hex2rgb('#bfd3e6');hex2rgb('#41ae76');hex2rgb('#F9A603');hex2rgb('#993404');hex2rgb('#88419d')];
 
 figure('units','normalized','outerposition',[0.2 0.2 0.6 0.6]);
 subplot('Position',[0.085387323943662,0.174774774774775,0.899295774647887,0.803603603603605]);
